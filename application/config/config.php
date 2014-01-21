@@ -1,5 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+
+$config['site_title'] = 'Clonify';
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -14,7 +18,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= 'http://localhost/dssd/';
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +30,7 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

@@ -11,6 +11,7 @@ class Auth extends CI_Controller
 		$this->load->library('security');
 		$this->load->library('tank_auth');
 		$this->lang->load('tank_auth');
+		$this->form_validation->set_error_delimiters('', '');
 	}
 
 	function index()
@@ -73,10 +74,13 @@ class Auth extends CI_Controller
 				} else {
 					$errors = $this->tank_auth->get_error_message();
 					if (isset($errors['banned'])) {								// banned user
-						$this->_show_message($this->lang->line('auth_message_banned').' '.$errors['banned']);
+						set_flash('display', 'error',$this->lang->line('auth_message_banned'),'/auth/login');
+						
 
-					} elseif (isset($errors['not_activated'])) {				// not activated user
-						redirect('/auth/send_again/');
+					} elseif (isset($errors['not_activated'])) {
+						
+						set_flash('display', 'error',$this->lang->line('auth_message_activation_email_sent'),'/auth/login');				// not activated user
+						
 
 					} else {													// fail
 						foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
@@ -92,7 +96,9 @@ class Auth extends CI_Controller
 					$data['captcha_html'] = $this->_create_captcha();
 				}
 			}
+			$this->load->view('partials/header');
 			$this->load->view('auth/login_form', $data);
+			$this->load->view('partials/footer');
 		}
 	}
 
@@ -115,6 +121,7 @@ class Auth extends CI_Controller
 	 */
 	function register()
 	{
+		// print_r('hi');exit;
 		if ($this->tank_auth->is_logged_in()) {									// logged in
 			redirect('');
 
@@ -122,7 +129,8 @@ class Auth extends CI_Controller
 			redirect('/auth/send_again/');
 
 		} elseif (!$this->config->item('allow_registration', 'tank_auth')) {	// registration is off
-			$this->_show_message($this->lang->line('auth_message_registration_disabled'));
+			set_flash('display', 'error',$this->lang->line('auth_message_registration_disabled'),'/auth/login');
+			
 
 		} else {
 			$use_username = $this->config->item('use_username', 'tank_auth');
@@ -161,8 +169,8 @@ class Auth extends CI_Controller
 						$this->_send_email('activate', $data['email'], $data);
 
 						unset($data['password']); // Clear password (just for any case)
-
-						$this->_show_message($this->lang->line('auth_message_registration_completed_1'));
+						set_flash('display', 'success',$this->lang->line('auth_message_registration_completed_1'),'/auth/login');
+						
 
 					} else {
 						if ($this->config->item('email_account_details', 'tank_auth')) {	// send "welcome" email
@@ -170,8 +178,8 @@ class Auth extends CI_Controller
 							$this->_send_email('welcome', $data['email'], $data);
 						}
 						unset($data['password']); // Clear password (just for any case)
-
-						$this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.anchor('/auth/login/', 'Login'));
+						set_flash('display', 'success',$this->lang->line('auth_message_registration_completed_2'),'/auth/login');
+						
 					}
 				} else {
 					$errors = $this->tank_auth->get_error_message();
@@ -188,7 +196,9 @@ class Auth extends CI_Controller
 			$data['use_username'] = $use_username;
 			$data['captcha_registration'] = $captcha_registration;
 			$data['use_recaptcha'] = $use_recaptcha;
+			$this->load->view('partials/header');
 			$this->load->view('auth/register_form', $data);
+			$this->load->view('partials/footer');
 		}
 	}
 
@@ -215,8 +225,7 @@ class Auth extends CI_Controller
 					$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
 
 					$this->_send_email('activate', $data['email'], $data);
-
-					$this->_show_message(sprintf($this->lang->line('auth_message_activation_email_sent'), $data['email']));
+					set_flash('display', 'success',$this->lang->line('auth_message_activation_email_sent'),'/auth/login');
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();
@@ -242,11 +251,12 @@ class Auth extends CI_Controller
 		// Activate user
 		if ($this->tank_auth->activate_user($user_id, $new_email_key)) {		// success
 			$this->tank_auth->logout();
-			$this->_show_message($this->lang->line('auth_message_activation_completed').' '.anchor('/auth/login/', 'Login'));
+			set_flash('display', 'success',$this->lang->line('auth_message_activation_completed'),'/auth/login');
 
 		} else {																// fail
-			$this->_show_message($this->lang->line('auth_message_activation_failed'));
+			set_flash('display', 'error',$this->lang->line('auth_message_activation_failed'),'/auth/login');
 		}
+		redirect('/auth/login');
 	}
 
 	/**
@@ -275,15 +285,18 @@ class Auth extends CI_Controller
 
 					// Send email with password activation link
 					$this->_send_email('forgot_password', $data['email'], $data);
-
-					$this->_show_message($this->lang->line('auth_message_new_password_sent'));
+					set_flash('display', 'success',$this->lang->line('auth_message_new_password_sent'),'auth/forgot_password');
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+					
 				}
 			}
+			$this->load->view('partials/header');
 			$this->load->view('auth/forgot_password_form', $data);
+			$this->load->view('partials/footer');
+			
 		}
 	}
 
@@ -313,11 +326,10 @@ class Auth extends CI_Controller
 
 				// Send email with new password
 				$this->_send_email('reset_password', $data['email'], $data);
-
-				$this->_show_message($this->lang->line('auth_message_new_password_activated').' '.anchor('/auth/login/', 'Login'));
+				set_flash('display', 'success',$this->lang->line('auth_message_new_password_activated'),'auth/login');
 
 			} else {														// fail
-				$this->_show_message($this->lang->line('auth_message_new_password_failed'));
+				set_flash('display', 'error',$this->lang->line('auth_message_newauth_message_new_password_failed_password_activated'),'auth/login');
 			}
 		} else {
 			// Try to activate user by password key (if not activated yet)
@@ -326,10 +338,13 @@ class Auth extends CI_Controller
 			}
 
 			if (!$this->tank_auth->can_reset_password($user_id, $new_pass_key)) {
-				$this->_show_message($this->lang->line('auth_message_new_password_failed'));
+				set_flash('display', 'error',$this->lang->line('auth_message_new_password_failed'),'auth/login');
 			}
 		}
+		$this->load->view('partials/header');
 		$this->load->view('auth/reset_password_form', $data);
+		$this->load->view('partials/footer');
+		
 	}
 
 	/**

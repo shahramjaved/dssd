@@ -1,10 +1,11 @@
-<?php
+    <?php
 $login = array(
 	'name'	=> 'login',
 	'id'	=> 'login',
 	'value' => set_value('login'),
 	'maxlength'	=> 80,
-	'size'	=> 30,
+	'class' => 'form-control',
+	'placeholder' => 'Enter User Name ...',
 );
 if ($login_by_username AND $login_by_email) {
 	$login_label = 'Email or login';
@@ -16,7 +17,9 @@ if ($login_by_username AND $login_by_email) {
 $password = array(
 	'name'	=> 'password',
 	'id'	=> 'password',
-	'size'	=> 30,
+	'class' => "form-control",
+	'placeholder' => 'Enter Password ...',
+
 );
 $remember = array(
 	'name'	=> 'remember',
@@ -24,6 +27,7 @@ $remember = array(
 	'value'	=> 1,
 	'checked'	=> set_value('remember'),
 	'style' => 'margin:0;padding:0',
+	'class' => 'styled',
 );
 $captcha = array(
 	'name'	=> 'captcha',
@@ -31,63 +35,128 @@ $captcha = array(
 	'maxlength'	=> 8,
 );
 ?>
-<?php echo form_open($this->uri->uri_string()); ?>
-<table>
-	<tr>
-		<td><?php echo form_label($login_label, $login['id']); ?></td>
-		<td><?php echo form_input($login); ?></td>
-		<td style="color: red;"><?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo form_label('Password', $password['id']); ?></td>
-		<td><?php echo form_password($password); ?></td>
-		<td style="color: red;"><?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?></td>
-	</tr>
 
-	<?php if ($show_captcha) {
-		if ($use_recaptcha) { ?>
-	<tr>
-		<td colspan="2">
-			<div id="recaptcha_image"></div>
-		</td>
-		<td>
-			<a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a>
-			<div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">Get an audio CAPTCHA</a></div>
-			<div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></div>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<div class="recaptcha_only_if_image">Enter the words above</div>
-			<div class="recaptcha_only_if_audio">Enter the numbers you hear</div>
-		</td>
-		<td><input type="text" id="recaptcha_response_field" name="recaptcha_response_field" /></td>
-		<td style="color: red;"><?php echo form_error('recaptcha_response_field'); ?></td>
-		<?php echo $recaptcha_html; ?>
-	</tr>
-	<?php } else { ?>
-	<tr>
-		<td colspan="3">
-			<p>Enter the code exactly as it appears:</p>
-			<?php echo $captcha_html; ?>
-		</td>
-	</tr>
-	<tr>
-		<td><?php echo form_label('Confirmation Code', $captcha['id']); ?></td>
-		<td><?php echo form_input($captcha); ?></td>
-		<td style="color: red;"><?php echo form_error($captcha['name']); ?></td>
-	</tr>
-	<?php }
-	} ?>
+    <body class="loginPage">
 
-	<tr>
-		<td colspan="3">
-			<?php echo form_checkbox($remember); ?>
-			<?php echo form_label('Remember me', $remember['id']); ?>
-			<?php echo anchor('/auth/forgot_password/', 'Forgot password'); ?>
-			<?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'Register'); ?>
-		</td>
-	</tr>
-</table>
-<?php echo form_submit('submit', 'Let me in'); ?>
-<?php echo form_close(); ?>
+    <div class="container">
+
+        <div id="header">
+
+            <div class="row">
+
+                <div class="navbar">
+                    <div class="container">
+                        <a class="navbar-brand" href="<?=base_url();?>"><?=$this->config->item('site_title');?>.<span class="slogan">DSSD</span></a>
+                    </div>
+                </div><!-- /navbar -->
+
+            </div><!-- End .row -->
+
+        </div><!-- End #header -->
+
+    </div><!-- End .container -->    
+
+    <div class="container">
+            <div class="loginHeader"><h2>Login</h2></div>
+        <div class="loginContainer">
+
+
+            <?php echo form_open($this->uri->uri_string(),array('class' => 'form-horizontal', 'id' => 'loginForm', 'role' => 'form')); ?>
+                <div class="form-group">
+                    <label class="col-lg-12 control-label" for="username">Username:</label>
+                    <div class="col-lg-12">
+                        <?php echo form_input($login); ?>
+                        <span class="icon16 icomoon-icon-user right gray marginR10"></span>
+                    </div>
+                </div><!-- End .form-group  -->
+                <div class="form-group">
+                    <label class="col-lg-12 control-label" for="password">Password:</label>
+                    <div class="col-lg-12">
+                        <?php echo form_password($password); ?>
+                        <div class="checkbox left">
+                            <label style="font-size:11px;"><?php echo form_checkbox($remember); ?>Remember me</label>
+                        </div>
+                        <span class="icon16 icomoon-icon-lock right gray marginR10"></span>
+                        <span class="forgot help-block"><a href="<?=site_url('/auth/forgot_password/')?>">Forgot your password?</a></span>
+                    </div>
+                </div><!-- End .form-group  -->
+                <div class="form-group">
+                    <div class="col-lg-12 clearfix form-actions">
+                        <button type="submit" class="btn btn-info center" id="loginBtn"><span class="fa fa-sign-in white"></span> Login</button>
+                        <?php if ($this->config->item('allow_registration', 'tank_auth')){?>
+                        <a href="<?=site_url('auth/register');?>" class="btn btn-success center" style="margin-top:10px;"><span class="fa fa-upload white" ></span> Sign up</a>
+                        <?}?>
+                    </div>
+                </div><!-- End .form-group  -->
+            </form>
+        </div>
+
+    </div><!-- End .container -->
+
+    
+
+    </body>
+
+     <!-- Le javascript
+    ================================================== -->
+     <script type="text/javascript">
+        // document ready function
+        $(document).ready(function() {
+            
+            $("input, textarea, select").not('.nostyle').uniform();
+            <?if(isset_flash_data('display')){?>
+                    $.pnotify({
+                                type: '<?=flash_message_type("display");?>',
+                                text: '<?=flash_message("display");?>',
+                                opacity: 0.95,
+                                history: false,
+                                sticker: false
+                            });
+                            
+            <?}?>      
+            validator = $("#loginForm").validate({
+             
+                rules: {
+                    login: {
+                        required: true,
+                        minlength: 4
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6
+                    }  
+                },
+                messages: {
+                    login: {
+                        required: "Username is required",
+                        minlength: "Username mustbe atleast 4 chracters"
+                    },
+                    password: {
+                        required: "Please provide a password",
+                        minlength: "Password mustbe atleast 6 charcters"
+                    }
+                }   
+            });
+            <?if(validation_errors()){?>
+                validator.showErrors({
+                    <?if(form_error('login')){?>
+                        "login": "<?=form_error('login');?>",
+                    <?}?>
+                    
+                    <?if(form_error('password')){?>
+                        "password": "<?=form_error('password');?>",
+                    <?}?>   
+                    
+
+                });
+            <?}?>
+            <?if(isset($errors)){?>
+                 validator.showErrors({
+                <?foreach ($errors as $key => $value){?>
+                    "<?=$key?>": "<?=$value;?>",
+
+                <?}?>
+                });
+            <?}?>
+        });
+    </script>
