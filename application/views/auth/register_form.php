@@ -99,7 +99,8 @@ $captcha = array(
                         <?php echo form_password($confirm_password); ?>
                     </div>
                 </div>
-                
+                <?php if ($captcha_registration) {
+		if ($use_recaptcha) { ?>
                 <div class="form-group">
                     <div id="recaptcha_image" class="col-lg-12"></div>
                     <label class="col-lg-12 control-label" for="Update CAPTCHA">
@@ -114,7 +115,7 @@ $captcha = array(
                       <?php echo form_label(form_error('recaptcha_response_field'), 'error', array('class' => 'error')); ?>                      
                     </div>
                 </div>
-               
+               <?php } }?>
                 
                 
                 <div class="form-group">

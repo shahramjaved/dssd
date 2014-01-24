@@ -30,9 +30,11 @@ $remember = array(
 	'class' => 'styled',
 );
 $captcha = array(
-	'name'	=> 'captcha',
-	'id'	=> 'captcha',
-	'maxlength'	=> 8,
+  'name'  => 'recaptcha_response_field',
+  'id'    => 'recaptcha_response_field',
+  'class' => 'form-control',
+  'placeholder' => 'Enter the words above'  
+        
 );
 ?>
 
@@ -79,7 +81,24 @@ $captcha = array(
                         <span class="icon16 icomoon-icon-lock right gray marginR10"></span>
                         <span class="forgot help-block"><a href="<?=site_url('/auth/forgot_password/')?>">Forgot your password?</a></span>
                     </div>
-                </div><!-- End .form-group  -->
+                </div>
+                <?php if ($show_captcha) {
+		if ($use_recaptcha) { ?>
+                <div class="form-group">
+                    <div id="recaptcha_image" class="col-lg-12"></div>
+                    <label class="col-lg-12 control-label" for="Update CAPTCHA">
+                      <a href="javascript:void(0)" onclick="Recaptcha.reload()">
+                        Update Captcha
+                      </a>
+                    </label>                                                        
+                    <div class="col-lg-12">
+                        <?php echo form_input($captcha); ?>
+                    </div>
+                    <div class="col-lg-12">
+                      <?php echo form_label(form_error('recaptcha_response_field'), 'error', array('class' => 'error')); ?>                      
+                    </div>
+                </div>
+               <?php } }?>
                 <div class="form-group">
                     <div class="col-lg-12 clearfix form-actions">
                         <button type="submit" class="btn btn-info center" id="loginBtn"><span class="fa fa-sign-in white"></span> Login</button>
@@ -97,6 +116,8 @@ $captcha = array(
 
     </body>
 
+    <?php echo $recaptcha_html; ?>
+      
      <!-- Le javascript
     ================================================== -->
      <script type="text/javascript">
@@ -104,7 +125,7 @@ $captcha = array(
         $(document).ready(function() {
             
             $("input, textarea, select").not('.nostyle').uniform();
-            <?if(isset_flash_data('display')){?>
+            <?php if(isset_flash_data('display')){?>
                     $.pnotify({
                                 type: '<?=flash_message_type("display");?>',
                                 text: '<?=flash_message("display");?>',
@@ -113,7 +134,7 @@ $captcha = array(
                                 sticker: false
                             });
                             
-            <?}?>      
+            <?php }?>      
             validator = $("#loginForm").validate({
              
                 rules: {
@@ -137,25 +158,25 @@ $captcha = array(
                     }
                 }   
             });
-            <?if(validation_errors()){?>
+            <?php if(validation_errors()){?>
                 validator.showErrors({
-                    <?if(form_error('login')){?>
-                        "login": "<?=form_error('login');?>",
-                    <?}?>
+                    <?php if(form_error('login')){?>
+                        "login": "<?php echo form_error('login');?>",
+                    <?php }?>
                     
-                    <?if(form_error('password')){?>
-                        "password": "<?=form_error('password');?>",
-                    <?}?>   
+                    <?php if(form_error('password')){?>
+                        "password": "<?php echo form_error('password');?>",
+                    <?php }?>   
                     
 
                 });
-            <?}?>
-            <?if(isset($errors)){?>
+            <?php }?>
+            <?php if(isset($errors)){?>
                  validator.showErrors({
-                <?foreach ($errors as $key => $value){?>
-                    "<?=$key?>": "<?=$value;?>",
+                <?php foreach ($errors as $key => $value){?>
+                    "<?php echo $key?>": "<?php echo $value;?>",
 
-                <?}?>
+                <?php }?>
                 });
             <?php }?>
         });
