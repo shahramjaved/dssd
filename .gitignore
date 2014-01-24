@@ -8,5 +8,6 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 /nbproject/private/
+/nbproject/*
 application/config/config.php
 application/config/database.php

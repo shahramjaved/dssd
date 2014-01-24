@@ -34,9 +34,11 @@ $confirm_password = array(
 	'placeholder' => 'Retype password ...'
 );
 $captcha = array(
-	'name'	=> 'captcha',
-	'id'	=> 'captcha',
-	'maxlength'	=> 8,
+  'name'  => 'recaptcha_response_field',
+  'id'    => 'recaptcha_response_field',
+  'class' => 'form-control',
+  'placeholder' => 'Enter the words above'  
+        
 );
 ?>
 
@@ -73,7 +75,7 @@ $captcha = array(
                     </div>
                 </div><!-- End .form-group  -->
                 <div class="form-group">
-                    <label class="col-lg-12 control-label" for="password">
+                    <label class="col-lg-12 control-label" for="Email Address">
                     	<?php echo form_label('Email Address', $email['id']); ?>:
                     </label>
                     <div class="col-lg-12">
@@ -91,12 +93,30 @@ $captcha = array(
                     </div>
                 </div><!-- End .form-group  -->
                 <div class="form-group">
-                    <label class="col-lg-12 control-label" for="password">
+                    <label class="col-lg-12 control-label" for="confirm password">
                     	<?php echo form_label('Confirm Password', $confirm_password['id']); ?>:</label>
                     <div class="col-lg-12">
                         <?php echo form_password($confirm_password); ?>
                     </div>
-                </div><!-- End .form-group  -->
+                </div>
+                
+                <div class="form-group">
+                    <div id="recaptcha_image" class="col-lg-12"></div>
+                    <label class="col-lg-12 control-label" for="Update CAPTCHA">
+                      <a href="javascript:void(0)" onclick="Recaptcha.reload()">
+                        Update Captcha
+                      </a>
+                    </label>                                                        
+                    <div class="col-lg-12">
+                        <?php echo form_input($captcha); ?>
+                    </div>
+                    <div class="col-lg-12">
+                      <?php echo form_label(form_error('recaptcha_response_field'), 'error', array('class' => 'error')); ?>                      
+                    </div>
+                </div>
+               
+                
+                
                 <div class="form-group">
                     <div class="col-lg-12 clearfix form-actions">
                     	<a href="<?=site_url('auth/login');?>" class="btn btn-danger center" style="margin-bottom:10px;"> <span class="fa fa-times white"> Cancel</a>
@@ -113,15 +133,15 @@ $captcha = array(
     
     </body>
 
-
+<?php echo $recaptcha_html; ?>
 
      <script type="text/javascript">
         // document ready function
         $(document).ready(function() {
             
             $("input, textarea, select").not('.nostyle').uniform();
-
-           // validator = $("#loginForm").validate();
+ 
+          // validator = $("#loginForm").validate();
             validator = $("#loginForm").validate({
                 
                 rules: {
@@ -139,7 +159,7 @@ $captcha = array(
                     },
                     confirm_password: {
                     	equalTo: "#password"
-                    },  
+                    }
                 },
                 messages: {
                     username: {
@@ -154,28 +174,28 @@ $captcha = array(
             });
 			<?if(validation_errors()){?>
 				validator.showErrors({
-					<?if(form_error('username')){?>
+					<?php if(form_error('username')){?>
 				  		"username": "<?=form_error('username');?>",
-				  	<?}?>
-				  	<?if(form_error('email')){?>
+				  	<?php }?>
+				  	<?php if(form_error('email')){?>
 				  		"email": "<?=form_error('email');?>",
-				  	<?}?>
-				  	<?if(form_error('password')){?>
+				  	<?php }?>
+				  	<?php if(form_error('password')){?>
 				  		"password": "<?=form_error('password');?>",
-				  	<?}?>	
-				  	<?if(form_error('confirm_password')){?>
+				  	<?php }?>	
+				  	<?php if(form_error('confirm_password')){?>
 				  		"confirm_password": "<?=form_error('confirm_password');?>"
-				  	<?}?>
+				  	<?php }?>
 
 				});
-			<?}?>
-            <?if(isset($errors)){?>
+			<?php }?>
+            <?php if(isset($errors)){?>
                  validator.showErrors({
                 <?foreach ($errors as $key => $value){?>
-                    "<?=$key?>": "<?=$value;?>",
+                    "<?php echo $key;?>": "<?php echo $value;?>",
 
-                <?}?>
+                <?php }?>
                 });
-            <?}?>
+            <?php }?>
         });
     </script>

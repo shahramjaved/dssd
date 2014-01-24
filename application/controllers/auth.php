@@ -144,11 +144,9 @@ class Auth extends CI_Controller
 			$captcha_registration	= $this->config->item('captcha_registration', 'tank_auth');
 			$use_recaptcha			= $this->config->item('use_recaptcha', 'tank_auth');
 			if ($captcha_registration) {
-				if ($use_recaptcha) {
-					$this->form_validation->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback__check_recaptcha');
-				} else {
-					$this->form_validation->set_rules('captcha', 'Confirmation Code', 'trim|xss_clean|required|callback__check_captcha');
-				}
+                          if ($use_recaptcha){
+                            $this->form_validation->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback__check_recaptcha');
+                          }                          
 			}
 			$data['errors'] = array();
 
@@ -588,8 +586,8 @@ class Auth extends CI_Controller
 				$_POST['recaptcha_response_field']);
 
 		if (!$resp->is_valid) {
-			$this->form_validation->set_message('_check_recaptcha', $this->lang->line('auth_incorrect_captcha'));
-			return FALSE;
+			$this->form_validation->set_message('_check_recaptcha', $this->lang->line('auth_incorrect_captcha'));			
+                        return FALSE;
 		}
 		return TRUE;
 	}
