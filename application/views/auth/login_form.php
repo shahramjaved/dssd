@@ -157,6 +157,6 @@ $captcha = array(
 
                 <?}?>
                 });
-            <?}?>
+            <?php }?>
         });
     </script>
