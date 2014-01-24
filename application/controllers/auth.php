@@ -88,6 +88,7 @@ class Auth extends CI_Controller
 				}
 			}
 			$data['show_captcha'] = FALSE;
+                        $data['recaptcha_html'] = '';
 			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
 				$data['show_captcha'] = TRUE;
 				if ($data['use_recaptcha']) {
@@ -364,16 +365,19 @@ class Auth extends CI_Controller
 
 			if ($this->form_validation->run()) {								// validation ok
 				if ($this->tank_auth->change_password(
-						$this->form_validation->set_value('old_password'),
-						$this->form_validation->set_value('new_password'))) {	// success
-					$this->_show_message($this->lang->line('auth_message_password_changed'));
+                                    $this->form_validation->set_value('old_password'),
+                                    $this->form_validation->set_value('new_password'))) {	// success					
+                                        set_flash('display', 'success',$this->lang->line('auth_message_password_changed'),'home/');
 
 				} else {														// fail
 					$errors = $this->tank_auth->get_error_message();
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
+                        $this->load->view('partials/header');
 			$this->load->view('auth/change_password_form', $data);
+			$this->load->view('partials/footer');
+			
 		}
 	}
 
