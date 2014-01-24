@@ -18,7 +18,7 @@ $config['site_title'] = 'Clonify';
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/dssd/';
+$config['base_url']	= 'http://local.dssd.com';
 
 /*
 |--------------------------------------------------------------------------
