@@ -88,6 +88,7 @@ class Auth extends CI_Controller
 				}
 			}
 			$data['show_captcha'] = FALSE;
+                        $data['recaptcha_html'] = '';
 			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
 				$data['show_captcha'] = TRUE;
 				if ($data['use_recaptcha']) {
@@ -144,11 +145,9 @@ class Auth extends CI_Controller
 			$captcha_registration	= $this->config->item('captcha_registration', 'tank_auth');
 			$use_recaptcha			= $this->config->item('use_recaptcha', 'tank_auth');
 			if ($captcha_registration) {
-				if ($use_recaptcha) {
-					$this->form_validation->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback__check_recaptcha');
-				} else {
-					$this->form_validation->set_rules('captcha', 'Confirmation Code', 'trim|xss_clean|required|callback__check_captcha');
-				}
+                          if ($use_recaptcha){
+                            $this->form_validation->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback__check_recaptcha');
+                          }                          
 			}
 			$data['errors'] = array();
 
@@ -366,16 +365,19 @@ class Auth extends CI_Controller
 
 			if ($this->form_validation->run()) {								// validation ok
 				if ($this->tank_auth->change_password(
-						$this->form_validation->set_value('old_password'),
-						$this->form_validation->set_value('new_password'))) {	// success
-					$this->_show_message($this->lang->line('auth_message_password_changed'));
+                                    $this->form_validation->set_value('old_password'),
+                                    $this->form_validation->set_value('new_password'))) {	// success					
+                                        set_flash('display', 'success',$this->lang->line('auth_message_password_changed'),'home/');
 
 				} else {														// fail
 					$errors = $this->tank_auth->get_error_message();
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
+                        $this->load->view('partials/header');
 			$this->load->view('auth/change_password_form', $data);
+			$this->load->view('partials/footer');
+			
 		}
 	}
 
@@ -588,8 +590,8 @@ class Auth extends CI_Controller
 				$_POST['recaptcha_response_field']);
 
 		if (!$resp->is_valid) {
-			$this->form_validation->set_message('_check_recaptcha', $this->lang->line('auth_incorrect_captcha'));
-			return FALSE;
+			$this->form_validation->set_message('_check_recaptcha', $this->lang->line('auth_incorrect_captcha'));			
+                        return FALSE;
 		}
 		return TRUE;
 	}
