@@ -38,6 +38,17 @@ class Login_attempts extends CI_Model
 		return $qres->num_rows();
 	}
 
+	function get_last_attempt_time($ip_address, $login)
+	{
+
+		$this->db->where('ip_address', $ip_address);
+		if (strlen($login) > 0) $this->db->or_where('login', $login);
+    $this->db->order_by("time", "desc");
+    $this->db->limit(1, 0);
+		$qres = $this->db->get($this->table_name);
+		return ($qres->num_rows() > 0) ? $qres->row() : null;
+	}
+
 	/**
 	 * Increase number of attempts for given IP-address and login
 	 *

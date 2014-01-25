@@ -21,6 +21,7 @@ $config['webmaster_email'] = 'webmaster@your-site.com';
 */
 $config['phpass_hash_portable'] = FALSE;
 $config['phpass_hash_strength'] = 8;
+$config['failed_login_attempts_time'] = 2*60*60;
 
 /*
 |--------------------------------------------------------------------------

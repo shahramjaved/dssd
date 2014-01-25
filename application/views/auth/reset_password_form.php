@@ -51,7 +51,7 @@ $confirm_new_password = array(
         $(document).ready(function() {
             
             $("input, textarea, select").not('.nostyle').uniform();
-             <?if(isset_flash_data('display')){?>
+             <?php if(isset_flash_data('display')){?>
                     $.pnotify({
                                 type: '<?=flash_message_type("display");?>',
                                 text: '<?=flash_message("display");?>',
@@ -60,7 +60,7 @@ $confirm_new_password = array(
                                 sticker: false
                             });
                             
-            <?}?>       
+            <?php }?>       
             validator = $("#loginForm").validate({
              
                 rules: {
@@ -73,7 +73,7 @@ $confirm_new_password = array(
                     },  
                 }
             });
-            <?if(validation_errors()){?>
+            <?php if(validation_errors()){?>
                 validator.showErrors({
                     <?if(form_error('new_password')){?>
                         "new_password": "<?=form_error('new_password');?>",
@@ -83,6 +83,6 @@ $confirm_new_password = array(
                     <?}?>
          
                 });
-            <?}?>
+            <?php }?>
         });
     </script>

@@ -153,7 +153,7 @@ $captcha = array(
                 <br/>
                 <div class="form-group">
                     <div class="col-lg-12 clearfix form-actions">
-                    	<a href="<?=site_url('auth/login');?>" class="btn btn-danger center" style="margin-bottom:10px;"> <span class="fa fa-times white"> Cancel</a>
+                    	<a href="<?php echo site_url('auth/login');?>" class="btn btn-danger center" style="margin-bottom:10px;"> <span class="fa fa-times white"> Cancel</a>
                         <button type="submit" class="btn btn-info center" id="loginBtn" ><span class="fa fa-upload white"></span> Sign Up</button>
                         
                     </div>
@@ -255,11 +255,11 @@ $captcha = array(
 			<?php }?>
             <?php if(isset($errors)){?>
                  validator.showErrors({
-                <?foreach ($errors as $key => $value){?>
+                <?php foreach ($errors as $key => $value){?>
                     "<?php echo $key;?>": "<?php echo $value;?>",
 
                 <?php }?>
                 });
-            <?php }?>
+            <?php } ?>
         });
     </script>
