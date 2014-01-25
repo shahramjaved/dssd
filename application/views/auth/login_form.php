@@ -1,4 +1,4 @@
-    <?php
+<?php
 $login = array(
 	'name'	=> 'login',
 	'id'	=> 'login',
@@ -92,67 +92,60 @@ $captcha = array(
 
     </div><!-- End .container -->    
     <?php echo $recaptcha_html; ?>
-      
-     <!-- Le javascript
+    <!-- Le javascript
     ================================================== -->
-     <script type="text/javascript">
-        // document ready function
-        $(document).ready(function() {
-            
-            $("input, textarea, select").not('.nostyle').uniform();
-            <?php if(isset_flash_data('display')){?>
-                    $.pnotify({
-                                type: '<?=flash_message_type("display");?>',
-                                text: '<?=flash_message("display");?>',
-                                opacity: 0.95,
-                                history: false,
-                                sticker: false
-                            });
-                            
-            <?php }?>      
-            validator = $("#loginForm").validate({
-             
-                rules: {
-                    login: {
-                        required: true,
-                        minlength: 4
-                    },
-                    password: {
-                        required: true,
-                        minlength: 6
-                    }  
-                },
-                messages: {
-                    login: {
-                        required: "Username is required",
-                        minlength: "Username mustbe atleast 4 chracters"
-                    },
-                    password: {
-                        required: "Please provide a password",
-                        minlength: "Password mustbe atleast 6 charcters"
-                    }
-                }   
-            });
-            <?php if(validation_errors()){?>
-                validator.showErrors({
-                    <?php if(form_error('login')){?>
-                        "login": "<?php echo form_error('login');?>",
-                    <?php }?>
-                    
-                    <?php if(form_error('password')){?>
-                        "password": "<?php echo form_error('password');?>",
-                    <?php }?>   
-                    
-
+    <script type="text/javascript">
+    // document ready function
+              $(document).ready(function() {
+      $("input, textarea, select").not('.nostyle').uniform();
+    <?php if (isset_flash_data('display')) { ?>
+        $.pnotify({
+        type: '<?= flash_message_type("display"); ?>',
+                text: '<?= flash_message("display"); ?>',
+                opacity: 0.95,
+                history: false,
+                sticker: false
                 });
-            <?php }?>
-            <?php if(isset($errors)){?>
-                 validator.showErrors({
-                <?php foreach ($errors as $key => $value){?>
-                    "<?php echo $key?>": "<?php echo $value;?>",
+    <?php } ?>
+      validator = $("#loginForm").validate({
+      rules: {
+      login: {
+      required: true,
+              minlength: 4
+              },
+              password: {
+              required: true,
+                      minlength: 6
+                      }
+      },
+              messages: {
+              login: {
+              required: "Username is required",
+                      minlength: "Username mustbe atleast 4 chracters"
+                      },
+                      password: {
+                      required: "Please provide a password",
+                              minlength: "Password mustbe atleast 6 charcters"
+                              }
+              }
+      });
+    <?php if (validation_errors()) { ?>
+        validator.showErrors({
+      <?php if (form_error('login')) { ?>
+          "login": "<?php echo form_error('login'); ?>",
+      <?php } ?>
+      <?php if (form_error('password')) { ?>
+          "password": "<?php echo form_error('password'); ?>",
+      <?php } ?>
 
-                <?php }?>
-                });
-            <?php }?>
         });
-    </script>
+    <?php } ?>
+    <?php if (isset($errors)) { ?>
+        validator.showErrors({
+      <?php foreach ($errors as $key => $value) { ?>
+          "<?php echo $key ?>": "<?php echo $value; ?>",
+      <?php } ?>
+        });
+    <?php } ?>
+  });
+</script>

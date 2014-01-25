@@ -1,4 +1,5 @@
 <?php
+
 if ($use_username) {
 	$username = array(
 		'name'	=> 'username',
@@ -158,9 +159,6 @@ $captcha = array(
                     </div>
                 </div><!-- End .form-group  -->
             </form>
-        </div>
-
-
     </div><!-- End .container -->
 <?php echo $recaptcha_html; ?>
 
@@ -232,7 +230,7 @@ $captcha = array(
                     }
                 }   
             });
-			<?if(validation_errors()){?>
+			<?php if(validation_errors()){?>
 				validator.showErrors({
 					<?php if(form_error('first_name')){?>
 				  		"first_name": "<?php echo form_error('first_name');?>",

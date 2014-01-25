@@ -45,7 +45,7 @@ if ($this->config->item('use_username', 'tank_auth')) {
         $(document).ready(function() {
             
             $("input, textarea, select").not('.nostyle').uniform();
-             <?if(isset_flash_data('display')){?>
+             <?php if(isset_flash_data('display')){?>
                     $.pnotify({
                                 type: '<?=flash_message_type("display");?>',
                                 text: '<?=flash_message("display");?>',
@@ -54,7 +54,7 @@ if ($this->config->item('use_username', 'tank_auth')) {
                                 sticker: false
                             });
                             
-            <?}?>       
+            <?php }?>       
             validator = $("#loginForm").validate({
              
                 rules: {
@@ -64,21 +64,21 @@ if ($this->config->item('use_username', 'tank_auth')) {
                     }
                 }
             });
-            <?if(validation_errors()){?>
+            <?php if(validation_errors()){?>
                 validator.showErrors({
-                    <?if(form_error('login')){?>
+                    <?php if(form_error('login')){?>
                         "login": "<?=form_error('login');?>",
-                    <?}?>
+                    <?php }?>
          
                 });
-            <?}?>
-            <?if(isset($errors)){?>
+            <?php }?>
+            <?php if(isset($errors)){?>
                  validator.showErrors({
-                <?foreach ($errors as $key => $value){?>
-                    "<?=$key?>": "<?=$value;?>",
+                <?php foreach ($errors as $key => $value){?>
+                    "<?php echo $key ?>": "<?php echo $value; ?>",
 
-                <?}?>
+                <?php } ?>
                 });
-            <?}?>
+            <?php }?>
         });
     </script>
