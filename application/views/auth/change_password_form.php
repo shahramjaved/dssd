@@ -24,28 +24,6 @@ $confirm_new_password = array(
 	'size' 	=> 30,
 );
 ?>
-
-<body class="loginPage">
-
-    <div class="container">
-
-        <div id="header">
-
-            <div class="row">
-
-                <div class="navbar">
-                    <div class="container">
-                        <a class="navbar-brand" href="<?=base_url();?>"><?=$this->config->item('site_title');?>.<span class="slogan">DSSD</span></a>
-                    </div>
-                </div><!-- /navbar -->
-
-            </div><!-- End .row -->
-
-        </div><!-- End #header -->
-
-    </div><!-- End .container -->  
-    
-    
     <div class="container">
       <div class="loginHeader"><h2>Change Password</h2></div>
         <div class="loginContainer">
@@ -80,7 +58,6 @@ $confirm_new_password = array(
             <?php echo form_close(); ?>
         </div>
     </div>
-</body>
 
 
 <script type="text/javascript">

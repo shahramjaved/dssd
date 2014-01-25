@@ -36,27 +36,7 @@ $captcha = array(
   'placeholder' => 'Enter the words above'  
         
 );
-?>
-
-    <body class="loginPage">
-
-    <div class="container">
-
-        <div id="header">
-
-            <div class="row">
-
-                <div class="navbar">
-                    <div class="container">
-                        <a class="navbar-brand" href="<?=base_url();?>"><?=$this->config->item('site_title');?>.<span class="slogan">DSSD</span></a>
-                    </div>
-                </div><!-- /navbar -->
-
-            </div><!-- End .row -->
-
-        </div><!-- End #header -->
-
-    </div><!-- End .container -->    
+?>     
 
     <div class="container">
             <div class="loginHeader"><h2>Login</h2></div>
@@ -65,7 +45,7 @@ $captcha = array(
 
             <?php echo form_open($this->uri->uri_string(),array('class' => 'form-horizontal', 'id' => 'loginForm', 'role' => 'form')); ?>
                 <div class="form-group">
-                    <label class="col-lg-12 control-label" for="username">Username:</label>
+                    <label class="col-lg-12 control-label" for="username">Username/Email:</label>
                     <div class="col-lg-12">
                         <?php echo form_input($login); ?>
                         <span class="icon16 icomoon-icon-user right gray marginR10"></span>
@@ -110,12 +90,7 @@ $captcha = array(
             </form>
         </div>
 
-    </div><!-- End .container -->
-
-    
-
-    </body>
-
+    </div><!-- End .container -->    
     <?php echo $recaptcha_html; ?>
       
      <!-- Le javascript

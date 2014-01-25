@@ -14,27 +14,7 @@ if ($this->config->item('use_username', 'tank_auth')) {
 }
 
 ?>
-
-    <body class="loginPage">
-
-    <div class="container">
-
-        <div id="header">
-
-            <div class="row">
-
-                <div class="navbar">
-                    <div class="container">
-                        <a class="navbar-brand" href="<?=base_url();?>"><?=$this->config->item('site_title');?>.<span class="slogan">DSSD</span></a>
-                    </div>
-                </div><!-- /navbar -->
-
-            </div><!-- End .row -->
-
-        </div><!-- End #header -->
-
-    </div><!-- End .container -->    
-
+    
     <div class="container">
             <div class="loginHeader"><h2>Forgot Password</h2></div>
         <div class="loginContainer">
@@ -59,12 +39,6 @@ if ($this->config->item('use_username', 'tank_auth')) {
         </div>
 
     </div><!-- End .container -->
-
-    
-
-    </body>
-
-
 
      <script type="text/javascript">
         // document ready function

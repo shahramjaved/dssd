@@ -7,7 +7,7 @@
 | These details are used in emails sent by authentication library.
 |--------------------------------------------------------------------------
 */
-$config['website_name'] = 'DSSD Project';
+$config['website_name'] = 'Clonify';
 $config['webmaster_email'] = 'webmaster@your-site.com';
 
 /*
@@ -73,7 +73,7 @@ $config['login_by_email'] = TRUE;
 $config['login_record_ip'] = TRUE;
 $config['login_record_time'] = TRUE;
 $config['login_count_attempts'] = TRUE;
-$config['login_max_attempts'] = 5;
+$config['login_max_attempts'] = 3;
 $config['login_attempt_expire'] = 60*60*24;
 
 /*
@@ -91,10 +91,10 @@ $config['autologin_cookie_life'] = 60*60*24*31*2;
 |--------------------------------------------------------------------------
 | Forgot password settings
 |
-| 'forgot_password_expire' = Time before forgot password key become invalid. Default is 15 minutes (60*15).
+| 'forgot_password_expire' = Time before forgot password key become invalid. Default is 60 minutes (60*60).
 |--------------------------------------------------------------------------
 */
-$config['forgot_password_expire'] = 60*15;
+$config['forgot_password_expire'] = 60*60;
 
 /*
 |--------------------------------------------------------------------------

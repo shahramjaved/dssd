@@ -97,9 +97,9 @@ class Auth extends CI_Controller
 					$data['captcha_html'] = $this->_create_captcha();
 				}
 			}
-			$this->load->view('partials/header');
+			$this->load->view('partials/main_header');
 			$this->load->view('auth/login_form', $data);
-			$this->load->view('partials/footer');
+			$this->load->view('partials/main_footer');
 		}
 	}
 
@@ -136,14 +136,16 @@ class Auth extends CI_Controller
 		} else {
 			$use_username = $this->config->item('use_username', 'tank_auth');
 			if ($use_username) {
-				$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']|alpha_dash');
+				$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']');
 			}
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
-			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
+                        $this->form_validation->set_rules('first_name', 'Fisrt Name', 'trim|required|xss_clean|alpha');
+                        $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|alpha');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|callback__check_password');
 			$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|xss_clean|matches[password]');
 
 			$captcha_registration	= $this->config->item('captcha_registration', 'tank_auth');
-			$use_recaptcha			= $this->config->item('use_recaptcha', 'tank_auth');
+			$use_recaptcha	= $this->config->item('use_recaptcha', 'tank_auth');
 			if ($captcha_registration) {
                           if ($use_recaptcha){
                             $this->form_validation->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback__check_recaptcha');
@@ -158,7 +160,9 @@ class Auth extends CI_Controller
 						$use_username ? $this->form_validation->set_value('username') : '',
 						$this->form_validation->set_value('email'),
 						$this->form_validation->set_value('password'),
-						$email_activation))) {									// success
+						$email_activation,
+                                                $this->form_validation->set_value('first_name'),
+                                                $this->form_validation->set_value('last_name') ))) {									// success
 
 					$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 
@@ -195,9 +199,10 @@ class Auth extends CI_Controller
 			$data['use_username'] = $use_username;
 			$data['captcha_registration'] = $captcha_registration;
 			$data['use_recaptcha'] = $use_recaptcha;
-			$this->load->view('partials/header');
+                        $data['site_name'] = $this->config->item('website_name', 'tank_auth');
+			$this->load->view('partials/main_header');
 			$this->load->view('auth/register_form', $data);
-			$this->load->view('partials/footer');
+			$this->load->view('partials/main_footer');
 		}
 	}
 
@@ -292,9 +297,9 @@ class Auth extends CI_Controller
 					
 				}
 			}
-			$this->load->view('partials/header');
+			$this->load->view('partials/main_header');
 			$this->load->view('auth/forgot_password_form', $data);
-			$this->load->view('partials/footer');
+			$this->load->view('partials/main_footer');
 			
 		}
 	}
@@ -328,21 +333,21 @@ class Auth extends CI_Controller
 				set_flash('display', 'success',$this->lang->line('auth_message_new_password_activated'),'auth/login');
 
 			} else {														// fail
-				set_flash('display', 'error',$this->lang->line('auth_message_newauth_message_new_password_failed_password_activated'),'auth/login');
+                          set_flash('display', 'error',$this->lang->line('auth_message_newauth_message_new_password_failed_password_activated'),'auth/login');
 			}
 		} else {
 			// Try to activate user by password key (if not activated yet)
 			if ($this->config->item('email_activation', 'tank_auth')) {
-				$this->tank_auth->activate_user($user_id, $new_pass_key, FALSE);
+                          $this->tank_auth->activate_user($user_id, $new_pass_key, FALSE);
 			}
 
 			if (!$this->tank_auth->can_reset_password($user_id, $new_pass_key)) {
 				set_flash('display', 'error',$this->lang->line('auth_message_new_password_failed'),'auth/login');
 			}
 		}
-		$this->load->view('partials/header');
+		$this->load->view('partials/main_header');
 		$this->load->view('auth/reset_password_form', $data);
-		$this->load->view('partials/footer');
+		$this->load->view('partials/main_footer');
 		
 	}
 
@@ -374,9 +379,9 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-                        $this->load->view('partials/header');
+                        $this->load->view('partials/main_header');
 			$this->load->view('auth/change_password_form', $data);
-			$this->load->view('partials/footer');
+			$this->load->view('partials/main_footer');
 			
 		}
 	}
@@ -530,6 +535,28 @@ class Auth extends CI_Controller
 		return $cap['image'];
 	}
 
+        /**
+	 * Callback function. to verify password.
+	 *
+	 * @param   string
+	 * @return  bool
+	 */
+	function _check_password($password)
+	{
+            $containsLetter  = preg_match('/[a-zA-Z]/',    $password);
+            $containsDigit   = preg_match('/\d/',          $password);
+            $containsSpecial = preg_match('/[^a-zA-Z\d]/', $password);
+
+            $containsAll = $containsLetter && $containsDigit && $containsSpecial;            
+            
+            if (!$containsAll){
+              $this->form_validation->set_message('_check_password', 'Password should be alphanumeric with atleast 1 special characher.');
+              return false;
+            }
+            return TRUE;
+	}
+        
+        
 	/**
 	 * Callback function. Check if CAPTCHA test is passed.
 	 *

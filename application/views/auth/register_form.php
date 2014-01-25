@@ -17,6 +17,25 @@ $email = array(
 	'class' => 'form-control',
 	'placeholder' => 'Enter email ...'
 );
+
+$first_name = array(
+  'name'  => 'first_name',
+  'id'	=> 'first_name',
+  'value'	=> set_value('first_name'),
+  'maxlength'	=> 100,
+  'class' => 'form-control',
+  'placeholder' => 'Enter first name...'
+);
+
+$last_name = array(
+  'name'  => 'last_name',
+  'id'	=> 'last_name',
+  'value'	=> set_value('last_name'),
+  'maxlength'	=> 100,
+  'class' => 'form-control',
+  'placeholder' => 'Enter last name...'
+);
+
 $password = array(
 	'name'	=> 'password',
 	'id'	=> 'password',
@@ -33,6 +52,12 @@ $confirm_password = array(
 	'class' => 'form-control',
 	'placeholder' => 'Retype password ...'
 );
+$agree_terms_condition = array(
+	'name'	=> 'terms_conditions',
+	'id'	=> 'terms_conditions',
+	'value' => set_value('terms_conditions'),
+	'class' => 'form-control',	
+);
 $captcha = array(
   'name'  => 'recaptcha_response_field',
   'id'    => 'recaptcha_response_field',
@@ -41,46 +66,39 @@ $captcha = array(
         
 );
 ?>
-
-    <body class="loginPage">
-
-    <div class="container">
-
-        <div id="header">
-
-            <div class="row">
-
-                <div class="navbar">
-                    <div class="container">
-                        <a class="navbar-brand" href="<?=base_url();?>"><?=$this->config->item('site_title');?>.<span class="slogan">DSSD</span></a>
-                    </div>
-                </div><!-- /navbar -->
-
-            </div><!-- End .row -->
-
-        </div><!-- End #header -->
-
-    </div><!-- End .container -->    
-
     <div class="container">
     	<div class="loginHeader"><h2>Sign Up</h2></div>
         <div class="loginContainer">
 
-        	<?php echo form_open($this->uri->uri_string(),array('class' => 'form-horizontal', 'id' => 'loginForm', 'role' => 'form')); ?>
+        	<?php echo form_open($this->uri->uri_string(),array('class' => 'form-horizontal', 'id' => 'registerForm', 'role' => 'form')); ?>
                 <div class="form-group">
-                    <label class="col-lg-12 control-label" for="username"><?php echo form_label('Username', $username['id']); ?>:</label>
+                      <label class="col-lg-12 control-label" for="first name"><?php echo form_label('Fisrt Name', $first_name['id']); ?>:</label>
+                      <div class="col-lg-12">
+                          <?php echo form_input($first_name); ?>                          
+                      </div>
+                </div>
+          
+                <div class="form-group">
+                  <label class="col-lg-12 control-label" for="last name"><?php echo form_label('Last Name', $last_name['id']); ?>:</label>
                     <div class="col-lg-12">
-                        <?php echo form_input($username); ?>
-                        <span class="icon16 icomoon-icon-user right gray marginR10"></span>
+                      <?php echo form_input($last_name); ?>                      
                     </div>
-                </div><!-- End .form-group  -->
+                </div>
+                  
+                <?php if ($use_username){?>
+                  <div class="form-group">
+                      <label class="col-lg-12 control-label" for="username"><?php echo form_label('Username', $username['id']); ?>:</label>
+                      <div class="col-lg-12">
+                          <?php echo form_input($username); ?>                          
+                      </div>
+                  </div>
+                <?php }?>
                 <div class="form-group">
                     <label class="col-lg-12 control-label" for="Email Address">
                     	<?php echo form_label('Email Address', $email['id']); ?>:
                     </label>
                     <div class="col-lg-12">
-                        <?php echo form_input($email); ?>
-                        <span class="icon16 fa fa-envelope-o right gray marginR10"></span>
+                        <?php echo form_input($email); ?>                        
                     </div>
                 </div><!-- End .form-group  -->
                 
@@ -107,6 +125,14 @@ $captcha = array(
                       <a href="javascript:void(0)" onclick="Recaptcha.reload()">
                         Update Captcha
                       </a>
+                      &nbsp;&nbsp;
+                      <a href="javascript:Recaptcha.switch_type('audio')">
+                        Audio Captcha
+                      </a>
+                      &nbsp;&nbsp;
+                      <a href="javascript:Recaptcha.switch_type('image')">
+                        Image Captcha
+                      </a>
                     </label>                                                        
                     <div class="col-lg-12">
                         <?php echo form_input($captcha); ?>
@@ -114,10 +140,16 @@ $captcha = array(
                     <div class="col-lg-12">
                       <?php echo form_label(form_error('recaptcha_response_field'), 'error', array('class' => 'error')); ?>                      
                     </div>
-                </div>
+                </div>                                
                <?php } }?>
-                
-                
+                <div class="form-group">                    
+                  <div class="col-lg-12">
+                        <?php echo form_checkbox($agree_terms_condition); ?>
+                    I agree to the <?php echo $site_name;?> 
+                    <a href="/general/terms_condistions" target="_blank">Terms of Service</a>
+                  </div>
+                </div>
+                <br/>
                 <div class="form-group">
                     <div class="col-lg-12 clearfix form-actions">
                     	<a href="<?=site_url('auth/login');?>" class="btn btn-danger center" style="margin-bottom:10px;"> <span class="fa fa-times white"> Cancel</a>
@@ -130,10 +162,6 @@ $captcha = array(
 
 
     </div><!-- End .container -->
-
-    
-    </body>
-
 <?php echo $recaptcha_html; ?>
 
      <script type="text/javascript">
@@ -141,11 +169,16 @@ $captcha = array(
         $(document).ready(function() {
             
             $("input, textarea, select").not('.nostyle').uniform();
- 
-          // validator = $("#loginForm").validate();
-            validator = $("#loginForm").validate({
+           
+            validator = $("#registerForm").validate({
                 
                 rules: {
+                    first_name: {
+                        required: true                        
+                    },
+                    last_name: {
+                        required: true                       
+                    },
                     username: {
                         required: true,
                         minlength: 4
@@ -158,34 +191,66 @@ $captcha = array(
                         required: true,
                         minlength: 6
                     },
+                    terms_conditions: {
+                        required: true                        
+                    },
+                    recaptcha_response_field:{
+                      required: true
+                    },
                     confirm_password: {
+                        required: true,
                     	equalTo: "#password"
                     }
                 },
                 messages: {
+                    first_name: {
+                        required: "First Name is required"
+                    },
+                    last_name: {
+                        required: "Last Name is required"
+                    },
+                    email: {
+                        required: "Email is required",
+                        email: "Please enter correct email"
+                    },
                     username: {
                         required: "Username is required",
                         minlength: "Username mustbe atleast 4 chracters"
                     },
                     password: {
-                        required: "Please provide a password",
+                        required: "Password is required",
                         minlength: "Password mustbe atleast 6 charcters"
+                    },
+                    confirm_password: {
+                        required: "Confirm password is required"                        
+                    },
+                    terms_conditions:{
+                      required: "Please accept terms of service"
+                    },
+                    recaptcha_response_field: {
+                      required: "Please enter captcha"
                     }
                 }   
             });
 			<?if(validation_errors()){?>
 				validator.showErrors({
-					<?php if(form_error('username')){?>
-				  		"username": "<?=form_error('username');?>",
+					<?php if(form_error('first_name')){?>
+				  		"first_name": "<?php echo form_error('first_name');?>",
+				  	<?php }?>
+                                        <?php if(form_error('last_name')){?>
+				  		"last_name": "<?php echo form_error('last_name');?>",
+				  	<?php }?>  
+                                        <?php if(form_error('username')){?>
+				  		"username": "<?php echo form_error('username');?>",
 				  	<?php }?>
 				  	<?php if(form_error('email')){?>
-				  		"email": "<?=form_error('email');?>",
+				  		"email": "<?php echo form_error('email');?>",
 				  	<?php }?>
 				  	<?php if(form_error('password')){?>
-				  		"password": "<?=form_error('password');?>",
+				  		"password": "<?php echo form_error('password');?>",
 				  	<?php }?>	
 				  	<?php if(form_error('confirm_password')){?>
-				  		"confirm_password": "<?=form_error('confirm_password');?>"
+				  		"confirm_password": "<?php echo form_error('confirm_password');?>"
 				  	<?php }?>
 
 				});

@@ -2766,7 +2766,7 @@ form input.valid {border: 1px solid #9FC569 !important;}
 
 .checker label.error {
 	min-width: 260px;
-	text-align: right;
+	text-align: left;
 	display: block;
 }
 

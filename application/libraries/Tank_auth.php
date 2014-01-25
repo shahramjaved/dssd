@@ -71,6 +71,9 @@ class Tank_auth
 						$this->ci->session->set_userdata(array(
 								'user_id'	=> $user->id,
 								'username'	=> $user->username,
+                                                                'email'       	=> $user->email,
+                                                                'first_name'	=> $user->first_name,
+                                                                'last_name'	=> $user->last_name,
 								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
 						));
 
@@ -113,7 +116,7 @@ class Tank_auth
 		$this->delete_autologin();
 
 		// See http://codeigniter.com/forums/viewreply/662369/ as the reason for the next line
-		$this->ci->session->set_userdata(array('user_id' => '', 'username' => '', 'status' => ''));
+		$this->ci->session->set_userdata(array('user_id' => '', 'email' => '', 'username' => '', 'first_name' => '', 'last_name' => '', 'status' => ''));
 
 		$this->ci->session->sess_destroy();
 	}
@@ -148,6 +151,21 @@ class Tank_auth
 	{
 		return $this->ci->session->userdata('username');
 	}
+        
+        function get_email()
+	{
+		return $this->ci->session->userdata('email');
+	}
+        
+        function get_first_name()
+	{
+		return $this->ci->session->userdata('first_name');
+	}
+        
+        function get_last_name()
+	{
+		return $this->ci->session->userdata('last_name');
+	}
 
 	/**
 	 * Create new user on the site and return some data about it:
@@ -159,7 +177,7 @@ class Tank_auth
 	 * @param	bool
 	 * @return	array
 	 */
-	function create_user($username, $email, $password, $email_activation)
+	function create_user($username, $email, $password, $email_activation, $first_name, $last_name)
 	{
 		if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
 			$this->error = array('username' => 'auth_username_in_use');
@@ -177,6 +195,8 @@ class Tank_auth
 			$data = array(
 				'username'	=> $username,
 				'password'	=> $hashed_password,
+                                'first_name'	=> $first_name,
+                                'last_name'	=> $last_name,
 				'email'		=> $email,
 				'last_ip'	=> $this->ci->input->ip_address(),
 			);
@@ -186,7 +206,7 @@ class Tank_auth
 			}
 			if (!is_null($res = $this->ci->users->create_user($data, !$email_activation))) {
 				$data['user_id'] = $res['user_id'];
-				$data['password'] = $password;
+				$data['password'] = $password;                                                                
 				unset($data['last_ip']);
 				return $data;
 			}

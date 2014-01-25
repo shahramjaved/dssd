@@ -9,6 +9,7 @@ $lang['auth_username_in_use'] = 'Username already exists. Please choose another 
 $lang['auth_current_email'] = 'This is your current email';
 $lang['auth_incorrect_captcha'] = 'Your confirmation code does not match the one in the image.';
 $lang['auth_captcha_expired'] = 'Your confirmation code has expired. Please try again.';
+$lang['auth_password_rule_mismatch'] = 'Password should be alphanumeric with atleast 1 cpecial characher.';
 
 // Notifications
 $lang['auth_message_logged_out'] = 'You have been successfully logged out.';
