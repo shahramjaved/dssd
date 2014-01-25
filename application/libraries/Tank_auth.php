@@ -625,6 +625,12 @@ class Tank_auth
 		return FALSE;
 	}
 
+	function last_login_attempt($login)
+	{
+    $this->ci->load->model('tank_auth/login_attempts');
+    return $this->ci->login_attempts->get_last_attempt_time($this->ci->input->ip_address(), $login);
+	}
+
 	/**
 	 * Increase number of attempts for given IP-address and login
 	 * (if attempts to login is being counted)
