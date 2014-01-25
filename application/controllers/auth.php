@@ -30,6 +30,7 @@ class Auth extends CI_Controller
 	 */
 	function login()
 	{
+    
 		if ($this->tank_auth->is_logged_in()) {									// logged in
 			redirect('');
 
@@ -89,13 +90,14 @@ class Auth extends CI_Controller
 			}
 			$data['show_captcha'] = FALSE;
                         $data['recaptcha_html'] = '';
+                        
 			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
-				$data['show_captcha'] = TRUE;
-				if ($data['use_recaptcha']) {
-					$data['recaptcha_html'] = $this->_create_recaptcha();
-				} else {
-					$data['captcha_html'] = $this->_create_captcha();
-				}
+        $last_login = $this->tank_auth->last_login_attempt($login);
+        if ($last_login){
+          if ((time() - strtotime($last_login->time)) <= $this->config->item('failed_login_attempts_time', 'tank_auth')){
+            set_flash('display', 'error',$this->lang->line('max_login_attempts_limit_reached'),'/auth/forgot_password');
+          }
+        }        
 			}
 			$this->load->view('partials/main_header');
 			$this->load->view('auth/login_form', $data);
