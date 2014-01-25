@@ -84,7 +84,7 @@ $captcha = array(
                         <button type="submit" class="btn btn-info center" id="loginBtn"><span class="fa fa-sign-in white"></span> Login</button>
                         <?php if ($this->config->item('allow_registration', 'tank_auth')){?>
                         <a href="<?=site_url('auth/register');?>" class="btn btn-success center" style="margin-top:10px;"><span class="fa fa-upload white" ></span> Sign up</a>
-                        <?}?>
+                        <?php } ?>
                     </div>
                 </div><!-- End .form-group  -->
             </form>
