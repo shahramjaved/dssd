@@ -260,6 +260,6 @@ $captcha = array(
 
                 <?php }?>
                 });
-            <?php }?>
+            
         });
     </script>
