@@ -31,8 +31,15 @@ class TestAuth extends CI_Controller
       $this->changePassword($username, $email, $password);      
       $this->forgotPasswordUserDoesExist($username, $email, $password);
       $this->forgotPasswordUserNotExist();      
-      
-      // These Should be Last rows of function
+      $this->checkNumericPassword();
+	  $this->checkRightPassword();
+	  $this->checkRightButShortPassword();
+      $this->checkAlphaNumericPassword();
+	  $this->checkOnlyTextPassword();
+	  $this->checkSpecialandNumberPassword();
+	  $this->checkSpecialandTextPassword();
+	  $this->checkSpecialKeyPassword();
+	  // These Should be Last rows of function
       $this->logout();
       $this->checkDataSetInSessionAfterLogout();
       echo $this->unit->report();
@@ -184,5 +191,82 @@ class TestAuth extends CI_Controller
       $this->unit->run($test_result, 'is_true', "Clear Login Attempts UserName[$username]");
     }
     
-    
+    private function checkNumericPassword()
+   {
+   $password = "123456";
+   $auth = new Auth();
+   $data = $auth->_check_password($password);
+   $this->unit->run($data,'is_false',"Check if number only password works");
+   } 
+
+    private function checkRightPassword()
+   {
+   $password = "1A%bsdfsfb";
+   $auth = new Auth();
+   $data = $auth->_check_password($password);
+   $this->unit->run($data,'is_true',"Check if alpha-numeric Special key password is accepted");
+   } 
+
+   private function checkRightButShortPassword()
+   {
+   $password = "1A%";
+   $auth = new Auth();
+   $data = $auth->_check_password($password);
+   $this->unit->run($data,'is_false',"Check if alpha-numeric Special key password accepted if its short less than 6 characters");
+   }
+
+	 private function checkAlphaNumericPassword()
+   {
+   $password = "1Aeferf3234bsdd34";
+   $auth = new Auth();
+   $data = $auth->_check_password($password);
+   $this->unit->run($data,'is_false',"Check if alpha-numeric password is accepted");
+   }
+
+	 private function checkOnlyTextPassword()
+   {
+   $password = "abcdesdsf";
+   $auth = new Auth();
+   $data = $auth->_check_password($password);
+   $this->unit->run($data,'is_false',"Check if text password is accepted");
+   }
+	 private function checkSpecialKeyPassword()
+   {
+   $password = "$%^$#$%";
+   $auth = new Auth();
+   $data = $auth->_check_password($password);
+   $this->unit->run($data,'is_false',"Check if Special Key password is accepted");
+   }
+
+    private function checkSpecialandTextPassword()
+   {
+   $password = "$%^$#$%affsfsf";
+   $auth = new Auth();
+   $data = $auth->_check_password($password);
+   $this->unit->run($data,'is_false',"Check if Special Key and Text password is accepted");
+   }
+   
+   
+    private function checkSpecialandNumberPassword()
+   {
+   $password = "$%^$#$%1243543";
+   $auth = new Auth();
+   $data = $auth->_check_password($password);
+   $this->unit->run($data,'is_false',"Check if Special Key and Number password is accepted");
+   }
+
+	
+	
+
+
+
+
+
+
+
+
+
+
 }
+
+   
