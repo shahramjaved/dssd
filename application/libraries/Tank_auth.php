@@ -326,6 +326,22 @@ class Tank_auth
 		return NULL;
 	}
 
+        function get_user_by_id($user_id){
+          $user = $this->ci->users->get_user_by_id($user_id, TRUE);
+          if ($user){
+            $data = array(
+                            'user_id'  => $user->id,
+                            'username' => $user->username,
+                            'email'   => $user->email,
+                            'first_name' => $user->first_name,
+                            'last_name' => $user->last_name,
+                          );
+            return $data;
+          }
+          
+          return NULL;
+          
+        }
 	/**
 	 * Check if given password key is valid and user is authenticated.
 	 *

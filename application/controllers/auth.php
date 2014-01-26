@@ -224,8 +224,8 @@ class Auth extends CI_Controller
 
 					$data['site_name']	= $this->config->item('website_name', 'tank_auth');
 					$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
-
-					$this->_send_email('activate', $data['email'], $data);
+                                        
+					$this->_send_email('activate', $data['email'], $data);                                       
 					set_flash('display', 'success',$this->lang->line('auth_message_activation_email_sent_new'), '/auth/send_again');
 
 				} else {
@@ -251,14 +251,16 @@ class Auth extends CI_Controller
 	 */
 	function activate()
 	{
-		$user_id		= $this->uri->segment(3);
-		$new_email_key	= $this->uri->segment(4);
+		$user_id = $this->uri->segment(3);
+		$new_email_key = $this->uri->segment(4);
 
 		// Activate user
 		if ($this->tank_auth->activate_user($user_id, $new_email_key)) {		// success
 			$this->tank_auth->logout();
+                        $data = $this->tank_auth->get_user_by_id($user_id);
+                        $data['site_name'] = $this->config->item('website_name', 'tank_auth');
+                        $this->_send_email('welcome', $data['email'], $data);
 			set_flash('display', 'success',$this->lang->line('auth_message_activation_completed'),'/auth/login');
-
 		} else {																// fail
 			set_flash('display', 'error',$this->lang->line('auth_message_activation_failed'),'/auth/login');
 		}
