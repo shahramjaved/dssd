@@ -553,7 +553,7 @@ class Auth extends CI_Controller
 
             $containsAll = $containsLetter && $containsDigit && $containsSpecial;            
             
-            if (!$containsAll){
+            if (!$containsAll || (strlen($password)<6) ){
               $this->form_validation->set_message('_check_password', 'Password should be alphanumeric with atleast 1 special characher.');
               return false;
             }
