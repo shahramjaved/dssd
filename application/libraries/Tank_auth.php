@@ -632,8 +632,8 @@ class Tank_auth
 
 	function last_login_attempt($login)
 	{
-    $this->ci->load->model('tank_auth/login_attempts');
-    return $this->ci->login_attempts->get_last_attempt_time($this->ci->input->ip_address(), $login);
+          $this->ci->load->model('tank_auth/login_attempts');
+          return $this->ci->login_attempts->get_last_attempt_time($this->ci->input->ip_address(), $login);
 	}
 
 	/**

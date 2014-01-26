@@ -71,7 +71,7 @@ class Auth extends CI_Controller
 						set_flash('display', 'error',$this->lang->line('auth_message_banned'),'/auth/login');
 						
 
-					} elseif (isset($errors['not_activated'])) {
+					} else if (isset($errors['not_activated'])) {
 						
 						set_flash('display', 'error',$this->lang->line('auth_message_activation_email_sent'),'/auth/login');				// not activated user
 						
@@ -84,13 +84,13 @@ class Auth extends CI_Controller
 			$data['show_captcha'] = FALSE;
                         $data['recaptcha_html'] = '';
                         
-			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
-        $last_login = $this->tank_auth->last_login_attempt($login);
-        if ($last_login){
-          if ((time() - strtotime($last_login->time)) <= $this->config->item('failed_login_attempts_time', 'tank_auth')){
-            set_flash('display', 'error',$this->lang->line('max_login_attempts_limit_reached'),'/auth/forgot_password');
-          }
-        }        
+			if (!$this->tank_auth->is_logged_in() && $login && $this->tank_auth->is_max_login_attempts_exceeded($login)) {
+                          $last_login = $this->tank_auth->last_login_attempt($login);
+                          if ($last_login){                            
+                            if ((time() - strtotime($last_login->time)) <= $this->config->item('failed_login_attempts_time', 'tank_auth')){
+                              set_flash('display', 'error',$this->lang->line('max_login_attempts_limit_reached'),'/auth/forgot_password');
+                            }
+                          }        
 			}
 			$this->load->view('partials/main_header');
 			$this->load->view('auth/login_form', $data);
@@ -216,7 +216,7 @@ class Auth extends CI_Controller
 
 			$data['errors'] = array();
 
-			if ($this->form_validation->run()) {								// validation ok
+			if ($this->form_validation->run()) {
 				if (!is_null($data = $this->tank_auth->change_email(
 						$this->form_validation->set_value('email')))) {			// success
 
@@ -224,14 +224,19 @@ class Auth extends CI_Controller
 					$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
 
 					$this->_send_email('activate', $data['email'], $data);
-					set_flash('display', 'success',$this->lang->line('auth_message_activation_email_sent'),'/auth/login');
+					set_flash('display', 'success',$this->lang->line('auth_message_activation_email_sent_new'), '/auth/send_again');
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();
-					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+					foreach ($errors as $k => $v){
+                                          $data['errors'][$k] = $this->lang->line($v);
+                                        }
 				}
 			}
+                        $this->load->view('partials/main_header');
 			$this->load->view('auth/send_again_form', $data);
+			$this->load->view('partials/main_footer');
+			
 		}
 	}
 
