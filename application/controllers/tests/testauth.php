@@ -23,11 +23,13 @@ class TestAuth extends CI_Controller
       
       $this->logout();
       $this->checkDataSetInSessionAfterLogout();
+	  $this->forgotPasswordUserNotExist();
+	  $this->forgotPasswordUserDoesExist();
       echo $this->unit->report();
     }    
 
     private function login(){
-      $login = "shahramjaved75";
+      $login = "danish";
       $password = "123456";
       $remember = false;
       $login_by_username = ($this->config->item('login_by_username', 'tank_auth') && $this->config->item('use_username', 'tank_auth'));
@@ -60,5 +62,18 @@ class TestAuth extends CI_Controller
       $this->tank_auth->logout();
     }
     
+	private function forgotPasswordUserNotExist()
+	{
+	$login = "ali"; // no user in my database
+	$data = $this->tank_auth->forgot_password($login);
+	$this->unit->run($data['username'], 'is_null', "forgotPasswordUserNotExist");
+	}
+	
+	private function forgotPasswordUserDoesExist()
+	{
+	$login = "danish"; // user exists in my database
+	$data = $this->tank_auth->forgot_password($login);
+	$this->unit->run($data['username'], $login, "forgotPasswordUserDoesExist");
+	}
     
 }
