@@ -29,6 +29,8 @@ class Tank_auth
 		$this->ci->load->library('session');
 		$this->ci->load->database();
 		$this->ci->load->model('tank_auth/users');
+                $this->ci->load->model('tank_auth/login_attempts');
+                $this->ci->load->model('tank_auth/user_autologin');
 
 		// Try to autologin
 		$this->autologin();
@@ -225,7 +227,10 @@ class Tank_auth
 	{
 		return ((strlen($username) > 0) AND $this->ci->users->is_username_available($username));
 	}
-
+        
+        function get_user_by_login($login){
+          return $this->ci->users->get_user_by_login($login);
+        }
 	/**
 	 * Check if email available for registering.
 	 * Can be called for instant form validation.
@@ -526,7 +531,7 @@ class Tank_auth
 	 * @param	int
 	 * @return	bool
 	 */
-	private function create_autologin($user_id)
+	public function create_autologin($user_id)
 	{
 		$this->ci->load->helper('cookie');
 		$key = substr(md5(uniqid(rand().get_cookie($this->ci->config->item('sess_cookie_name')))), 0, 16);
@@ -638,7 +643,7 @@ class Tank_auth
 	 * @param	string
 	 * @return	void
 	 */
-	private function increase_login_attempt($login)
+	public function increase_login_attempt($login)
 	{
 		if ($this->ci->config->item('login_count_attempts', 'tank_auth')) {
 			if (!$this->is_max_login_attempts_exceeded($login)) {
@@ -646,6 +651,8 @@ class Tank_auth
 				$this->ci->login_attempts->increase_attempt($this->ci->input->ip_address(), $login);
 			}
 		}
+                
+                return true;
 	}
 
 	/**
@@ -655,7 +662,7 @@ class Tank_auth
 	 * @param	string
 	 * @return	void
 	 */
-	private function clear_login_attempts($login)
+	public function clear_login_attempts($login)
 	{
 		if ($this->ci->config->item('login_count_attempts', 'tank_auth')) {
 			$this->ci->load->model('tank_auth/login_attempts');
@@ -664,6 +671,8 @@ class Tank_auth
 					$login,
 					$this->ci->config->item('login_attempt_expire', 'tank_auth'));
 		}
+                
+                return true;
 	}
 }
 

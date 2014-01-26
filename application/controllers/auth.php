@@ -131,7 +131,7 @@ class Auth extends CI_Controller
 		} else {
 			$use_username = $this->config->item('use_username', 'tank_auth');
 			if ($use_username) {
-				$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']');
+                          $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']');
 			}
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
                         $this->form_validation->set_rules('first_name', 'Fisrt Name', 'trim|required|xss_clean|alpha');
@@ -489,7 +489,7 @@ class Auth extends CI_Controller
 	 * @param	array
 	 * @return	void
 	 */
-	function _send_email($type, $email, &$data)
+	public function _send_email($type, $email, &$data)
 	{
 		$this->load->library('email');
 		$this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
