@@ -17,9 +17,11 @@ class Auth extends CI_Controller
 	function index()
 	{
 		if ($message = $this->session->flashdata('message')) {
-			$this->load->view('auth/general_message', array('message' => $message));
+                  $this->load->view('partials/main_header');
+                  $this->load->view('auth/general_message', array('message' => $message));
+                  $this->load->view('partials/main_footer');			
 		} else {
-			redirect('/auth/login/');
+                  redirect('/auth/login/');
 		}
 	}
 
@@ -71,7 +73,7 @@ class Auth extends CI_Controller
 						set_flash('display', 'error',$this->lang->line('auth_message_banned'),'/auth/login');
 						
 
-					} elseif (isset($errors['not_activated'])) {
+					} else if (isset($errors['not_activated'])) {
 						
 						set_flash('display', 'error',$this->lang->line('auth_message_activation_email_sent'),'/auth/login');				// not activated user
 						
@@ -84,13 +86,13 @@ class Auth extends CI_Controller
 			$data['show_captcha'] = FALSE;
                         $data['recaptcha_html'] = '';
                         
-			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
-        $last_login = $this->tank_auth->last_login_attempt($login);
-        if ($last_login){
-          if ((time() - strtotime($last_login->time)) <= $this->config->item('failed_login_attempts_time', 'tank_auth')){
-            set_flash('display', 'error',$this->lang->line('max_login_attempts_limit_reached'),'/auth/forgot_password');
-          }
-        }        
+			if (!$this->tank_auth->is_logged_in() && $login && $this->tank_auth->is_max_login_attempts_exceeded($login)) {
+                          $last_login = $this->tank_auth->last_login_attempt($login);
+                          if ($last_login){                            
+                            if ((time() - strtotime($last_login->time)) <= $this->config->item('failed_login_attempts_time', 'tank_auth')){
+                              set_flash('display', 'error',$this->lang->line('max_login_attempts_limit_reached'),'/auth/forgot_password');
+                            }
+                          }        
 			}
 			$this->load->view('partials/main_header');
 			$this->load->view('auth/login_form', $data);
@@ -131,7 +133,7 @@ class Auth extends CI_Controller
 		} else {
 			$use_username = $this->config->item('use_username', 'tank_auth');
 			if ($use_username) {
-				$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']');
+                          $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']');
 			}
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
                         $this->form_validation->set_rules('first_name', 'Fisrt Name', 'trim|required|xss_clean|alpha');
@@ -216,22 +218,27 @@ class Auth extends CI_Controller
 
 			$data['errors'] = array();
 
-			if ($this->form_validation->run()) {								// validation ok
+			if ($this->form_validation->run()) {
 				if (!is_null($data = $this->tank_auth->change_email(
 						$this->form_validation->set_value('email')))) {			// success
 
 					$data['site_name']	= $this->config->item('website_name', 'tank_auth');
 					$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
-
-					$this->_send_email('activate', $data['email'], $data);
-					set_flash('display', 'success',$this->lang->line('auth_message_activation_email_sent'),'/auth/login');
+                                        
+					$this->_send_email('activate', $data['email'], $data);                                       
+					set_flash('display', 'success',$this->lang->line('auth_message_activation_email_sent_new'), '/auth/send_again');
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();
-					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+					foreach ($errors as $k => $v){
+                                          $data['errors'][$k] = $this->lang->line($v);
+                                        }
 				}
 			}
+                        $this->load->view('partials/main_header');
 			$this->load->view('auth/send_again_form', $data);
+			$this->load->view('partials/main_footer');
+			
 		}
 	}
 
@@ -244,14 +251,16 @@ class Auth extends CI_Controller
 	 */
 	function activate()
 	{
-		$user_id		= $this->uri->segment(3);
-		$new_email_key	= $this->uri->segment(4);
+		$user_id = $this->uri->segment(3);
+		$new_email_key = $this->uri->segment(4);
 
 		// Activate user
 		if ($this->tank_auth->activate_user($user_id, $new_email_key)) {		// success
 			$this->tank_auth->logout();
+                        $data = $this->tank_auth->get_user_by_id($user_id);
+                        $data['site_name'] = $this->config->item('website_name', 'tank_auth');
+                        $this->_send_email('welcome', $data['email'], $data);
 			set_flash('display', 'success',$this->lang->line('auth_message_activation_completed'),'/auth/login');
-
 		} else {																// fail
 			set_flash('display', 'error',$this->lang->line('auth_message_activation_failed'),'/auth/login');
 		}
@@ -489,7 +498,7 @@ class Auth extends CI_Controller
 	 * @param	array
 	 * @return	void
 	 */
-	function _send_email($type, $email, &$data)
+	public function _send_email($type, $email, &$data)
 	{
 		$this->load->library('email');
 		$this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
@@ -544,7 +553,7 @@ class Auth extends CI_Controller
 
             $containsAll = $containsLetter && $containsDigit && $containsSpecial;            
             
-            if (!$containsAll){
+            if (!$containsAll || (strlen($password)<6) ){
               $this->form_validation->set_message('_check_password', 'Password should be alphanumeric with atleast 1 special characher.');
               return false;
             }
