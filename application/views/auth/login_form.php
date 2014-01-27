@@ -149,3 +149,44 @@ $captcha = array(
     <?php } ?>
   });
 </script>
+<br /><br /><br /><br />
+
+    <div id="fb-landing-page-data"><div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId: '240862889425196',
+            status: true,
+            cookie: true,
+            xfbml: true,
+            oauth: true
+          });
+
+        };
+        (function() {
+          var e = document.createElement('script');
+          e.async = true;
+          e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+          document.getElementById('fb-root').appendChild(e);
+        }());
+        var login = function() {
+          FB.getLoginStatus(function(response) {
+            if (response.status === 'connected')
+            {
+              $.get("/auth/facebook_login", null, function(responseText) {
+                console.log(responseText);
+                var data = eval("(" + responseText + ')');
+                console.log(data);
+                if (data && data.status && data.status == "failure") {
+                  alert(data.msg);
+                  window.location = "/auth/register"
+                }else if (data && data.status && data.status == "success"){
+                  window.location = "/auth"
+                }
+              });
+            }
+          });
+        };
+      </script>
+      <center><div id="fb-login-button" class="fb-login-button" data-scope="email" data-onlogin="login();" size="large">Connect with Facebook</div>
+      </center><br/></div>

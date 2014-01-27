@@ -619,40 +619,37 @@ class Auth extends CI_Controller
 	}
   
   function facebook_login(){
-    $fb_user_profile = $this->facebook_login();
+    $fb_user_profile = $this->getUserProfile();
     if ($fb_user_profile){
       $user = $this->tank_auth->facebook_user_exists($fb_user_profile['email']);
       if (is_null($user)){
         $data = $this->tank_auth->create_user(
                     $fb_user_profile['email'],
                     $fb_user_profile['email'],
-                    'facebook',
-                    1,
+                    'facebook123!@#',
+                    false,
                     $fb_user_profile['first_name'],
                     $fb_user_profile['last_name']);
+        
+        $data['id'] = $data['user_id'];
+        $data = (object)$data;
       }else{
-						$this->ci->session->set_userdata(array(
-								'user_id'	=> $user->id,
-								'username'	=> $user->username,
-                                                                'email'       	=> $user->email,
-                                                                'first_name'	=> $user->first_name,
-                                                                'last_name'	=> $user->last_name,
-								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
-						));
-							$this->clear_login_attempts($user->email);
-
-							$this->ci->users->update_login_info(
-									$user->id,
-									$this->ci->config->item('login_record_ip', 'tank_auth'),
-									$this->ci->config->item('login_record_time', 'tank_auth'));            
+        $data = $user;
       }
+      $this->tank_auth->populateUserSession($data);
+      echo json_encode(array('status' => 'success'));
     }else{
-      
+      echo json_encode(array('status' => 'failure', 'msg' => 'User cannot be login with Facebook'));
     }
   }
 
   function getUserProfile() {
-    $this->load->library('facebook');
+    
+    $this->load->library('facebook', array(
+      'appId'  => '240862889425196',
+      'secret' => 'd7155365dbc8e56496edba1009d10ee2',
+      'cookie' => true
+    ));
     $facebook = new Facebook(array(
       'appId'  => '240862889425196',
       'secret' => 'd7155365dbc8e56496edba1009d10ee2',
@@ -660,6 +657,7 @@ class Auth extends CI_Controller
     ));
     
     $fb_user = $facebook->getUser();
+    
         
     $fb_user_profile = null;
     
@@ -670,7 +668,6 @@ class Auth extends CI_Controller
         $fb_user = null;
       }
     }
-    
     return $fb_user_profile;
   }  
   

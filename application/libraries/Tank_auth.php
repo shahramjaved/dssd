@@ -43,6 +43,14 @@ class Tank_auth
 	 * @param	bool
 	 * @return	bool
 	 */
+  
+  function facebook_user_exists($login){
+    if (!is_null($user = $this->ci->users->get_user_by_email($login)))
+      return $user;
+    else
+      return null;
+  }
+  
 	function login($login, $password, $remember, $login_by_username, $login_by_email)
 	{
 		if ((strlen($login) > 0) AND (strlen($password) > 0)) {
@@ -291,6 +299,11 @@ class Tank_auth
 		return FALSE;
 	}
 
+	function create_profile($user_id)
+	{
+		return $this->ci->users->create_profile($user_id);
+	}
+  
 	/**
 	 * Set new password key for user and return some data about user:
 	 * user_id, username, email, new_pass_key.
@@ -665,6 +678,26 @@ class Tank_auth
 					$this->ci->config->item('login_attempt_expire', 'tank_auth'));
 		}
 	}
+  
+  function populateUserSession($user){
+    $this->ci->session->set_userdata(array(
+								'user_id'	=> $user->id,
+								'username'	=> $user->username,
+                                                                'email'       	=> $user->email,
+                                                                'first_name'	=> $user->first_name,
+                                                                'last_name'	=> $user->last_name,
+								'status'	=> STATUS_ACTIVATED
+      )
+      );
+      
+      $this->clear_login_attempts($user->email);
+
+      $this->ci->users->update_login_info(
+          $user->id,
+          $this->ci->config->item('login_record_ip', 'tank_auth'),
+          $this->ci->config->item('login_record_time', 'tank_auth'));
+    
+  }
 }
 
 /* End of file Tank_auth.php */
