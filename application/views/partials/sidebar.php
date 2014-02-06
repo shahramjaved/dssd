@@ -30,7 +30,7 @@
                         </li>
                         <li>
                             <a href="<?php echo site_url('home/result2');?>">
-                                <span class="icon16 fa fa fa-caret-right"></span>Data Table
+                                <span class="icon16 fa fa fa-caret-right"></span>Data Tablep
                             </a>
                         </li>
                     </ul>
