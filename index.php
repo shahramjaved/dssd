@@ -193,6 +193,7 @@ if (defined('ENVIRONMENT'))
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
 
+        define('VIEW_PARTIAL_FOLDER_PATH', dirname(__FILE__)."/" . $application_folder . "/views/partials");
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

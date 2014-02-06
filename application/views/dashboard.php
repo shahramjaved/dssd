@@ -1,5 +1,5 @@
 <div id="wrapper">
-<?php include 'partials/sidebar.php' ?>
+<?php include VIEW_PARTIAL_FOLDER_PATH . '/sidebar.php' ?>
         <!--Body content-->
         <div id="content" class="clearfix">
             <div class="contentwrapper"><!--Content wrapper-->

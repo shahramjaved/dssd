@@ -15,7 +15,7 @@ class General extends CI_Controller {
           
           public function terms_conditions(){
             $this->load->view('partials/main_header');
-	    $this->load->view('terms_condistions.php');
+	    $this->load->view('general/terms_condistions.php');
 	    $this->load->view('partials/main_footer');
           }
 }
