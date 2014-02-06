@@ -408,6 +408,7 @@ class GeSHi {
      * @var boolean
      */
     var $add_ids = false;
+    var $id_format = "class_1";
 
     /**
      * Lines that should be highlighted extra
@@ -1803,8 +1804,9 @@ class GeSHi {
      * @param boolean If true, IDs will be added to each line.
      * @since 1.0.2
      */
-    function enable_ids($flag = true) {
+    function enable_ids($flag = true, $format = "file_1") {
         $this->add_ids = ($flag) ? true : false;
+        $this->id_format = $format;
     }
 
     /**
@@ -3860,7 +3862,8 @@ class GeSHi {
         // If we are using IDs for line numbers, there needs to be an overall
         // ID set to prevent collisions.
         if ($this->add_ids && !$this->overall_id) {
-            $this->overall_id = 'geshi-' . substr(md5(microtime()), 0, 4);
+//            $this->overall_id = 'geshi-' . substr(md5(microtime()), 0, 4);
+            $this->overall_id = 'geshi-' . $this->id_format;
         }
 
         // Get code into lines

@@ -22,14 +22,31 @@ class Home extends CI_Controller {
   public function loadCode()
   {
     $viewData = array();
+    $scc_id = $this->input->post('scc_id');
+    $clone_list_id = $this->input->post('clone_list_id');
     
     $userId = 15;
     $loadId = 1;
-    $fileName = 'Cocos2dxBitmap.java';    
+    $lines = array();
+    if ($clone_list_id == 0){
+      $fileName = 'Cocos2dxBitmap.java';
+      for($i=56; $i<=68;$i++){
+        $lines[] = $i;
+      }
+    }else{
+      $fileName = 'Cocos2dxGLSurfaceView.java';      
+      for($i=96; $i<=108;$i++){
+        $lines[] = $i;
+      }
+    }
+    
     $filePath = UPLOADED_FILES_FOLDER . $userId . "/" . $loadId . "/" . $fileName;    
     $obj = new SyntaxHighlighter($filePath, 'java');
     $obj->EnableLineNumbers();
-    $obj->SetId('window1');    
+    
+    
+    $obj->HighlightLines($lines);
+    $obj->SetId('window' . $clone_list_id);    
     echo $obj->getFormattedCode();
   }
   
