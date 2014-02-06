@@ -7,7 +7,7 @@ $login = array(
 	'class' => 'form-control',
 	'placeholder' => 'Enter User Name ...',
 );
-if ($login_by_username AND $login_by_email) {
+if ($login_by_username && $login_by_email) {
 	$login_label = 'Email or login';
 } else if ($login_by_username) {
 	$login_label = 'Login';
@@ -47,8 +47,7 @@ $captcha = array(
                 <div class="form-group">
                     <label class="col-lg-12 control-label" for="username">Username/Email:</label>
                     <div class="col-lg-12">
-                        <?php echo form_input($login); ?>
-                        <span class="icon16 icomoon-icon-user right gray marginR10"></span>
+                        <?php echo form_input($login); ?>                        
                     </div>
                 </div><!-- End .form-group  -->
                 <div class="form-group">
@@ -57,8 +56,7 @@ $captcha = array(
                         <?php echo form_password($password); ?>
                         <div class="checkbox left">
                             <label style="font-size:11px;"><?php echo form_checkbox($remember); ?>Remember me</label>
-                        </div>
-                        <span class="icon16 icomoon-icon-lock right gray marginR10"></span>
+                        </div>                        
                         <span class="forgot help-block"><a href="<?=site_url('/auth/forgot_password/')?>">Forgot your password?</a></span>
                     </div>
                 </div>

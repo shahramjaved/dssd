@@ -73,7 +73,7 @@
                             <li class="menu">
                                 <ul>
                                   <li><a href="#"><span class="icon16 icomoon-icon-user-plus"></span>Update Profile</a></li>  
-                                  <li><a href="/auth/change_password"><span class="icon16 icomoon-icon-user-plus"></span>Change Password</a></li>                                    
+                                  <li><a href="<?php echo site_url('auth/change_password');?>"><span class="icon16 icomoon-icon-user-plus"></span>Change Password</a></li>                                    
                                 </ul>
                             </li>
                         </ul>
