@@ -18,6 +18,7 @@
     <link href="<?=asset_url('css/bootstrap/bootstrap-responsive.css')?>" rel="stylesheet" />
     <link href="<?=asset_url('css/supr-theme/jquery.ui.supr.css')?>" rel="stylesheet" type="text/css"/>
     <link href="<?=asset_url('css/icons.css')?>" rel="stylesheet" type="text/css" />
+    <link href="<?=asset_url('css/custom.css')?>" rel="stylesheet" type="text/css" />
     <link href="<?=asset_url('css/font-awesome.min.css')?>" rel="stylesheet" type="text/css" />
     <link href="<?=asset_url('plugins/forms/uniform/uniform.default.css')?>" type="text/css" rel="stylesheet" />
     <link href="<?=asset_url('plugins/misc/pnotify/jquery.pnotify.default.css')?>" type="text/css" rel="stylesheet" />
@@ -41,13 +42,14 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?=asset_url('images/apple-touch-icon-114-precomposed.png')?>')?>" />
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?=asset_url('images/apple-touch-icon-72-precomposed.png')?>" />
     <link rel="apple-touch-icon-precomposed" href="<?=asset_url('images/apple-touch-icon-57-precomposed.png')?>" />
-
+    <script type="text/javascript">
+            var base_url = "<?php echo base_url();?>";
+    </script>
     <script type="text/javascript" src="<?=asset_url('js/modernizr.js')?>"></script>
     <script  type="text/javascript" src="<?=asset_url('js/jquery.min.js');?>"></script>
-    <script type="text/javascript" src="<?=asset_url('js/bootstrap/bootstrap.js');?>"></script>  
-    <script type="text/javascript" src="<?=asset_url('plugins/forms/validate/jquery.validate.min.js');?>"></script>
-    <script type="text/javascript" src="<?=asset_url('plugins/forms/uniform/jquery.uniform.min.js');?>"></script>
-    <script type="text/javascript" src="<?=asset_url('plugins/misc/pnotify/jquery.pnotify.min.js');?>"></script>
+    <script  type="text/javascript" src="<?=asset_url('js/jquery-ui.min.js');?>"></script>
+    <script  type="text/javascript" src="<?=asset_url('js/jquery-migrate-1.2.1.min.js');?>"></script>
+    <script type="text/javascript" src="<?=asset_url('js/bootstrap/bootstrap.js');?>"></script>   
 
     </head>
     <body>    

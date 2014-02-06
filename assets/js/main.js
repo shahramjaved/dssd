@@ -11,7 +11,7 @@ var supr_Options = {
 //load some plugins only if is needed
 Modernizr.load({
   test: Modernizr.placeholder,
-  nope: 'plugins/forms/placeholder/jquery.placeholder.min.js',
+  nope: base_url+'assets/plugins/forms/placeholder/jquery.placeholder.min.js',
   complete: function () {
 	//------------- placeholder fallback  -------------//
 	$('input[placeholder], textarea[placeholder]').placeholder();
@@ -19,7 +19,7 @@ Modernizr.load({
 });
 Modernizr.load({
   test: Modernizr.touch,
-  yep: ['plugins/fix/ios-fix/ios-orientationchange-fix.js', 'plugins/fix/touch-punch/jquery.ui.touch-punch.min.js']
+  yep: [ base_url+'assets/plugins/fix/ios-fix/ios-orientationchange-fix.js',  base_url+'assets/plugins/fix/touch-punch/jquery.ui.touch-punch.min.js']
 });
 
 //window resize events
@@ -74,7 +74,7 @@ $(document).ready(function(){
 	//------------- Navigation -------------//
 
 	mainNav = $('.mainnav>ul>li');
-	mainNav.find('ul').siblings().addClass('hasUl').append('<span class="hasDrop icon16 icomoon-icon-arrow-down-2"></span>');
+	mainNav.find('ul').siblings().addClass('hasUl').append('<span class="hasDrop icon16 fa fa-caret-down"></span>');
 	mainNavLink = mainNav.find('a').not('.sub a');
 	mainNavLinkAll = mainNav.find('a');
 	mainNavSubLink = mainNav.find('.sub a').not('.sub li');

@@ -99,32 +99,11 @@ body.errorPage, body.loginPage {
 .loginContainer {
 	position: absolute;
 	border:1px solid #c4c4c4;
-	width:400px;
+	width:300px;
 	/*height:232px;*/
 	height: auto;
 	left:50%;
-	top:51%;
-	margin-left:-150px;
-    margin-top: -150px;
-    border-radius: 2px;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	-webkit-box-shadow:  0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-    box-shadow:  0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-    background: #fefefe;
-    padding:0px 20px 0 20px;
-}
-.loginHeader {
-	position: absolute;
-	border:1px solid #c4c4c4;
-	width:400px;
-	/*height:232px;*/
-	text-align: center;
-	padding: 5px;
-	height: auto;
-	left:50%;
-	top:40%;
+	top:50%;
 	margin-left:-150px;
     margin-top: -150px;
     border-radius: 2px;
@@ -191,7 +170,7 @@ body.errorPage, body.loginPage {
 	padding-right: 27px;
 	padding-top: 6px;
 	position: relative;
-	padding-bottom: 2px;
+	padding-bottom: 10px;
 	font-weight: normal;
 	font-size: 14px;
 }
@@ -1818,7 +1797,7 @@ select {width: 150px;}
 	#sidebar-right .mainnav li a.current, #sidebar-right .mainnav li a.current:hover {
 		margin-left:-1px;
 	}
-	.mainnav li a span[class*=" icon-"], .mainnav li a span[class*=" brocco-icon-"], .mainnav li a span[class*=" cut-icon-"], .mainnav li a span[class*=" entypo-icon-"], .mainnav li a span[class*=" icomoon-icon-"],.mainnav li a span[class*=" minia-icon-"],.mainnav li a span[class*=" iconic-icon-"],.mainnav li a span[class*=" meteo-icon-"],.mainnav li a span[class*=" silk-icon-"],.mainnav li a span[class*=" typ-icon-"],.mainnav li a span[class*=" wpzoom-"],.mainnav li a span[class*=" eco-"]  {
+	.mainnav li a span[class*=" icon-"],.mainnav li a span[class*=" fa-"], .mainnav li a span[class*=" brocco-icon-"], .mainnav li a span[class*=" cut-icon-"], .mainnav li a span[class*=" entypo-icon-"], .mainnav li a span[class*=" icomoon-icon-"],.mainnav li a span[class*=" minia-icon-"],.mainnav li a span[class*=" iconic-icon-"],.mainnav li a span[class*=" meteo-icon-"],.mainnav li a span[class*=" silk-icon-"],.mainnav li a span[class*=" typ-icon-"],.mainnav li a span[class*=" wpzoom-"],.mainnav li a span[class*=" eco-"]  {
 		padding-left:10px;
 		padding-right:10px;
 	}
@@ -1888,15 +1867,15 @@ select {width: 150px;}
 			border-top: 1px solid #dfdfdf;
     		border-bottom: 1px solid transparent;
 		}
-		.mainnav ul li .sub a span[class*=" icon-"], .mainnav ul li .sub a span[class*=" brocco-icon-"],.mainnav ul li .sub a span[class*=" cut-icon-"],.mainnav ul li .sub a span[class*=" entypo-icon-"],.mainnav ul li .sub a span[class*=" icomoon-icon-"], .mainnav ul li .sub a span[class*=" minia-icon-"],.mainnav ul li .sub a span[class*=" iconic-icon-"],.mainnav ul li .sub a span[class*=" meteo-icon-"],.mainnav ul li .sub a span[class*=" silk-icon-"],.mainnav ul li .sub a span[class*=" typ-icon-"],.mainnav ul li .sub a span[class*=" wpzoom-"],.mainnav ul li .sub a span[class*=" eco-"] {
+		.mainnav ul li .sub a span[class*=" icon-"],ul li .sub a span[class*=" fa-"], .mainnav ul li .sub a span[class*=" brocco-icon-"],.mainnav ul li .sub a span[class*=" cut-icon-"],.mainnav ul li .sub a span[class*=" entypo-icon-"],.mainnav ul li .sub a span[class*=" icomoon-icon-"], .mainnav ul li .sub a span[class*=" minia-icon-"],.mainnav ul li .sub a span[class*=" iconic-icon-"],.mainnav ul li .sub a span[class*=" meteo-icon-"],.mainnav ul li .sub a span[class*=" silk-icon-"],.mainnav ul li .sub a span[class*=" typ-icon-"],.mainnav ul li .sub a span[class*=" wpzoom-"],.mainnav ul li .sub a span[class*=" eco-"] {
 			padding-left:25px;
 			padding-right:10px;
 		}
-			.mainnav ul li .sub li .sub a span[class*=" icon-"], .mainnav ul li .sub li .sub a span[class*=" brocco-icon-"], .mainnav ul li .sub li .sub a span[class*=" cut-icon-"], .mainnav ul li .sub li .sub a span[class*=" entypo-icon-"], .mainnav ul li .sub li .sub a span[class*=" icomoon-icon-"], .mainnav ul li .sub li .sub a span[class*=" minia-icon-"], .mainnav ul li .sub li .sub a span[class*=" iconic-icon-"], .mainnav ul li .sub li .sub a span[class*=" meteo-icon-"], .mainnav ul li .sub li .sub a span[class*=" silk-icon-"], .mainnav ul li .sub li .sub a span[class*=" typ-icon-"], .mainnav ul li .sub li .sub a span[class*=" wpzoom-"],.mainnav ul li .sub li .sub a span[class*=" eco-"]  {
-				padding-left:35px;
-				padding-right:10px;
-			}
-	.mainnav .hasDrop {position: absolute; right: 0; top:0; padding-right: 0 !important;}
+		.mainnav ul li .sub li .sub a span[class*=" icon-"],ul li .sub li .sub a span[class*=" fa-"], .mainnav ul li .sub li .sub a span[class*=" brocco-icon-"], .mainnav ul li .sub li .sub a span[class*=" cut-icon-"], .mainnav ul li .sub li .sub a span[class*=" entypo-icon-"], .mainnav ul li .sub li .sub a span[class*=" icomoon-icon-"], .mainnav ul li .sub li .sub a span[class*=" minia-icon-"], .mainnav ul li .sub li .sub a span[class*=" iconic-icon-"], .mainnav ul li .sub li .sub a span[class*=" meteo-icon-"], .mainnav ul li .sub li .sub a span[class*=" silk-icon-"], .mainnav ul li .sub li .sub a span[class*=" typ-icon-"], .mainnav ul li .sub li .sub a span[class*=" wpzoom-"],.mainnav ul li .sub li .sub a span[class*=" eco-"]  {
+			padding-left:35px;
+			padding-right:10px;
+		}
+	.mainnav .hasDrop {position: absolute; right: 0; top:10px; padding-right: 0 !important;}
 
 	/*Second sub*/
 	.mainnav ul li .sub li .sub {
@@ -2766,7 +2745,7 @@ form input.valid {border: 1px solid #9FC569 !important;}
 
 .checker label.error {
 	min-width: 260px;
-	text-align: left;
+	text-align: right;
 	display: block;
 }
 

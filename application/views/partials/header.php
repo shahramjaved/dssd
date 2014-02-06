@@ -45,9 +45,11 @@
 
     <script type="text/javascript" src="<?=asset_url('js/modernizr.js')?>"></script>
     <script  type="text/javascript" src="<?=asset_url('js/jquery.min.js');?>"></script>
+    <script  type="text/javascript" src="<?=asset_url('js/jquery-migrate-1.2.1.min.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('js/bootstrap/bootstrap.js');?>"></script>  
     <script type="text/javascript" src="<?=asset_url('plugins/forms/validate/jquery.validate.min.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('plugins/forms/uniform/jquery.uniform.min.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('plugins/misc/pnotify/jquery.pnotify.min.js');?>"></script>
+
 
     </head>
