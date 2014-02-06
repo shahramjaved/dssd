@@ -22,6 +22,7 @@
     <script type="text/javascript" src="<?=asset_url('js/tables.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('js/datatable.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('js/jquery.poshytip.min.js');?>"></script>
+    <script type="text/javascript" src="<?=asset_url('js/flexible-nav.min.js');?>"></script>
     
 
 </html>

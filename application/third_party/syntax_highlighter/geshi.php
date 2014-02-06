@@ -415,6 +415,12 @@ class GeSHi {
      * @var array
      */
     var $highlight_extra_lines = array();
+    
+    /**
+     * Will Save the Start Line of highlight_extra_lines
+     * @var array
+     */
+    var $start_highlight_extra_lines = array();
 
     /**
      * Styles of lines that should be highlighted extra
@@ -1854,6 +1860,10 @@ class GeSHi {
      */
     function set_highlight_lines_extra_style($styles) {
         $this->highlight_extra_lines_style = $styles;
+    }
+    
+    function set_start_highlight_extra_lines($start) {
+        $this->start_highlight_extra_lines = $start;
     }
 
     /**
@@ -3947,9 +3957,12 @@ class GeSHi {
                         }
                     } else {
                         array_push($attrs['style'], $this->get_line_style($i));
-                    }
+                    }                    
                 }
-
+                
+                if (in_array($i, $this->start_highlight_extra_lines)){
+                  $attrs['class'][] = "$this->overall_id-minimap-index";
+                }
                 // Add in the line surrounded by appropriate list HTML
                 $attr_string = '';
                 foreach ($attrs as $key => $attr) {

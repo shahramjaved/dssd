@@ -30,9 +30,14 @@ class SyntaxHighlighter{
     $this->isLangSourceSet = true;
   }
   
-  public function HighlightLines($lines){        
+  public function HighlightLines($lines){    
     $this->geshi->highlight_lines_extra($lines);
   }
+  
+  public function AddMiniMapLink($lineNums){
+    $this->geshi->set_start_highlight_extra_lines($lineNums);
+  }
+  
   
   public function setToolTip($text){        
     

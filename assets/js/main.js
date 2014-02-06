@@ -515,7 +515,8 @@ Clonify.SCC = {
         $(selector1).poshytip({
           content: 'THIS IS TEST TOOLTIP FOR WINDOW 1'
         });
-    
+        
+        new FlexibleNav( new FlexibleNavMaker('.window0-minimap-index').make().prependTo('#code_map1') );        
       }else{
         $(".code-window2").show();
         $("#code_window2").html(r);
@@ -524,8 +525,10 @@ Clonify.SCC = {
         $(selector2).poshytip({
           content: 'THIS IS TEST TOOLTIP FOR WINDOW 2'
         });
-      }
-      
+        
+        new FlexibleNav( new FlexibleNavMaker('.window1-minimap-index').make().prependTo('#code_map2') );
+
+      }      
     });
   }
   

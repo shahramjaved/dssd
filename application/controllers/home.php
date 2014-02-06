@@ -28,16 +28,27 @@ class Home extends CI_Controller {
     $userId = 15;
     $loadId = 1;
     $lines = array();
+    $miniMapLinks = array();
     if ($clone_list_id == 0){
       $fileName = 'Cocos2dxBitmap.java';
       for($i=56; $i<=68;$i++){
         $lines[] = $i;
       }
+      $miniMapLinks[] = 56;
+      for($i=156; $i<=168;$i++){
+        $lines[] = $i;
+      }
+      $miniMapLinks[] = 156;
     }else{
       $fileName = 'Cocos2dxGLSurfaceView.java';      
       for($i=96; $i<=108;$i++){
         $lines[] = $i;
       }
+      $miniMapLinks[] = 96;
+      for($i=196; $i<=208;$i++){
+        $lines[] = $i;
+      }
+      $miniMapLinks[] = 196;
     }
     
     $filePath = UPLOADED_FILES_FOLDER . $userId . "/" . $loadId . "/" . $fileName;    
@@ -46,6 +57,7 @@ class Home extends CI_Controller {
     
     
     $obj->HighlightLines($lines);
+    $obj->AddMiniMapLink($miniMapLinks);
     $obj->SetId('window' . $clone_list_id);    
     echo $obj->getFormattedCode();
   }
