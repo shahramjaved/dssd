@@ -458,3 +458,41 @@ $(document).ready(function(){
 	$("#qLbar").fadeOut(250);
 
 });
+
+if( window['Clonify'] === undefined ) {
+  window['Clonify'] = {};
+}
+
+Clonify.namespace = function(){
+  var o, d;
+  $.each(arguments, function(i, v) {
+      d = v.split(".");
+    o = window[d[0]] = window[d[0]] || {};
+    $.each(d.slice(1), function(i, v2){
+        o = o[v2] = o[v2] || {};
+    });
+  });
+  return o;
+}
+
+Clonify.hasNamespace = function(ns) {
+  return eval( ns + " != undefined" );
+}
+
+Clonify.ns = Clonify.namespace;
+
+Clonify.ns('Clonify.SCC');
+
+Clonify.SCC = {
+  viewCloneInstance: function(_scc_id){
+    $(".scc_instance_list").hide();
+    $("#scc_instance_list_"+_scc_id).show();
+  },
+  
+  viewCodeData: function(_scc_id, _clone_list_id){
+    $(".scc_instance_list").hide();
+    $("#scc_instance_list_"+_scc_id).show();
+  }
+  
+};
+

@@ -3678,3 +3678,7 @@ body.rtl .support-section .sendMsg {margin-right: 0;}
 	.loginContainer {width: 180px;margin-left: -100px;}
 	.ui-datepicker{ max-width: 180px;}
 }
+
+.scc_instance_list{
+  display:none;
+}
