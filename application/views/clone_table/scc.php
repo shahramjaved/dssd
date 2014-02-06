@@ -22,7 +22,7 @@
                     <div class="col-lg-11 padding15 code-window" id="code_window1">                    
                     </div>
 
-                    <div class="col-lg-1 padingR20" id="code_map1">
+                    <div class="col-lg-1" id="code_map1">
                     </div>
                   </div>
                   <div class="clearfix"></div>
@@ -31,7 +31,7 @@
                     <div class="col-lg-11 padding15 code-window" id="code_window2">
 
                     </div>
-                    <div class="col-lg-1 padingR20" id="code_map2">
+                    <div class="col-lg-1" id="code_map2">
 
                     </div>
                   </div>

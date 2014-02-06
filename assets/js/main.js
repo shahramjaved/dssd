@@ -509,7 +509,7 @@ Clonify.SCC = {
       if ($("#code_window1").html() == ""){
         $(".code-window1").show();
         $("#code_window1").html(r);
-        window.location.hash='window0-55';
+        window.location.hash='window0-56';
         
         var selector1 = '#window0-56, #window0-58, #window0-60, #window0-62, #window0-64, #window0-66, #window0-68';
         $(selector1).poshytip({
@@ -520,7 +520,7 @@ Clonify.SCC = {
       }else{
         $(".code-window2").show();
         $("#code_window2").html(r);
-        window.location.hash='window1-95';        
+        window.location.hash='window1-96';        
         var selector2 = '#window1-96, #window1-98, #window1-100, #window1-102, #window1-104, #window1-106, #window1-108';
         $(selector2).poshytip({
           content: 'THIS IS TEST TOOLTIP FOR WINDOW 2'
