@@ -3789,9 +3789,7 @@ nav.flexible-nav ul li a {
     -webkit-border-radius: 5px;
     -o-border-radius: 5px;
     z-index: 10001;
-    text-decoration: none;
-    position: fixed;
-    right: 10px;
+    text-decoration: none;    
     background: #666;
     color: #eee;
     opacity: 0.7;
