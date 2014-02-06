@@ -6,18 +6,31 @@ class Home extends CI_Controller {
   {
     parent::__construct();
       $this->load->library('tank_auth');
+      $this->load->library('SyntaxHighlighter');
       if (!$this->tank_auth->is_logged_in()) {									// Not logged in
         redirect('/auth/login/');
       }
   }
   
   public function index()
-  {    
-    $data['user_id'] = $this->tank_auth->get_user_id();
-    $data['username'] = $this->tank_auth->get_username();            
-    $this->load->view('partials/main_header', $data);
+  {
+    $this->load->view('partials/main_header');
     $this->load->view('dashboard.php');
     $this->load->view('partials/main_footer');
+  }
+  
+  public function loadCode()
+  {
+    $viewData = array();
+    
+    $userId = 15;
+    $loadId = 1;
+    $fileName = 'Cocos2dxBitmap.java';    
+    $filePath = UPLOADED_FILES_FOLDER . $userId . "/" . $loadId . "/" . $fileName;    
+    $obj = new SyntaxHighlighter($filePath, 'java');
+    $obj->EnableLineNumbers();
+    $obj->SetId('window1');    
+    echo $obj->getFormattedCode();
   }
   
   public function SingleCloneClass(){

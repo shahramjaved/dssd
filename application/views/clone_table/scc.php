@@ -10,6 +10,36 @@
         <div class="heading">
           <h3>Single Clone Class</h3>                    
         </div>
+        
+        <div class="row code-window-containter">          
+            <div class="col-lg-12">
+              <div class="panel panel-default gradient">
+                <div class="panel-heading">
+                  <h4><span>Code Window</span></h4>
+                </div>
+                <div class="panel-body noPad clearfix">
+                  <div class="code-window1">
+                    <div class="col-lg-11 padding15 code-window" id="code_window1">                    
+                    </div>
+
+                    <div class="col-lg-1 padding15" id="code_map1">
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <br/>
+                  <div class="code-window2">
+                    <div class="col-lg-11 padding15 code-window" id="code_window2">
+
+                    </div>
+                    <div class="col-lg-1 padding15" id="code_map2">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        
         <?php foreach($scc_clone_list_data as $scc_id => $data){?>
           <div class="row scc_instance_list" id="scc_instance_list_<?php echo $scc_id;?>">
             <div class="col-lg-12">

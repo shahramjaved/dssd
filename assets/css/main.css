@@ -3682,3 +3682,12 @@ body.rtl .support-section .sendMsg {margin-right: 0;}
 .scc_instance_list{
   display:none;
 }
+
+.code-window-containter, .code-window2, .code-window1{
+  display:none;
+}
+
+.code-window{
+  height: 200px;
+  overflow-y: scroll;
+}

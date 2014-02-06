@@ -487,11 +487,33 @@ Clonify.SCC = {
   viewCloneInstance: function(_scc_id){
     $(".scc_instance_list").hide();
     $("#scc_instance_list_"+_scc_id).show();
+    $(".code-window-containter").hide();
+    $("#code_window1").html("");
+    $("#code_window2").html("");
+    $("#code_map1").html("");
+    $("#code_map2").html("");
+    $(".code-window1").hide();
+    $(".code-window2").hide();
   },
   
   viewCodeData: function(_scc_id, _clone_list_id){
-    $(".scc_instance_list").hide();
-    $("#scc_instance_list_"+_scc_id).show();
+    var _url = "/home/loadCode";
+    var _params = {
+      scc_id : _scc_id,
+      clone_list_id : _clone_list_id
+    };
+    
+    $.post(_url, _params, function(r) {
+      $(".code-window-containter").show();
+      if ($("#code_window1").html() == ""){
+        $(".code-window1").show();
+        $("#code_window1").html(r);
+      }else{
+        $(".code-window2").show();
+        $("#code_window2").html(r);
+      }
+      
+    });
   }
   
 };
