@@ -21,16 +21,16 @@
         <div class="mainnav">
             <ul>
                 <li>
-                    <a href="#"><span class="icon16 fa fa-desktop"></span>Results</a>
+                    <a href="#"><span class="icon16 fa fa-desktop"></span>Tables</a>
                     <ul class="sub">
                         <li>
                             <a href="<?php echo site_url('home/result1');?>">
-                                <span class="icon16 fa fa-caret-right"></span>Result 1
+                                <span class="icon16 fa fa-caret-right"></span>Static 
                             </a>
                         </li>
                         <li>
                             <a href="<?php echo site_url('home/result2');?>">
-                                <span class="icon16 fa fa fa-caret-right"></span>Result 2
+                                <span class="icon16 fa fa fa-caret-right"></span>Data Table
                             </a>
                         </li>
                     </ul>

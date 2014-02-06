@@ -15,6 +15,7 @@
 
     <!-- Le styles -->
     <link href="<?=asset_url('css/bootstrap/bootstrap.css')?>" rel="stylesheet" />
+    <link href="<?=asset_url('css/bootstrap/bootstrap-theme.css')?>" rel="stylesheet" type="text/css" />
     <link href="<?=asset_url('css/bootstrap/bootstrap-responsive.css')?>" rel="stylesheet" />
     <link href="<?=asset_url('css/supr-theme/jquery.ui.supr.css')?>" rel="stylesheet" type="text/css"/>
     <link href="<?=asset_url('css/icons.css')?>" rel="stylesheet" type="text/css" />

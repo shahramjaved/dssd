@@ -37,11 +37,11 @@
 
                 </div><!-- End .heading-->
                     
-                <!-- Build page from here: Usual with <div class="row-fluid"></div> -->
+                <!-- Build page from here: Usual with <div class="row"></div> -->
 
-                     <div class="row-fluid">
+                     <div class="row">
 
-                        <div class="span6">
+                        <div class="col-lg-6">
                             <div class="page-header">
                                 <h4>Default table styles</h4>
                             </div>
@@ -76,9 +76,9 @@
                                 </tbody>
                             </table>
 
-                        </div><!-- End .span6 -->
+                        </div><!-- End .col-lg-6 -->
 
-                        <div class="span6">
+                        <div class="col-lg-6">
                             <div class="page-header">
                                 <h4>Striped table</h4>
                             </div>
@@ -113,13 +113,13 @@
                                 </tbody>
                             </table>
 
-                        </div><!-- End .span6 -->
+                        </div><!-- End .col-lg-6 -->
 
                     </div><!-- End .container-fluid -->
 
-                    <div class="row-fluid">
+                    <div class="row">
 
-                        <div class="span6">
+                        <div class="col-lg-6">
                             <div class="page-header">
                                 <h4>Bordered table</h4>
                             </div>
@@ -154,9 +154,9 @@
                                 </tbody>
                             </table>
 
-                        </div><!-- End .span6 -->
+                        </div><!-- End .col-lg-6 -->
 
-                        <div class="span6">
+                        <div class="col-lg-6">
                             <div class="page-header">
                                 <h4>Condensed table</h4>
                             </div>
@@ -190,13 +190,13 @@
                                 </tbody>
                             </table>
 
-                        </div><!-- End .span6 -->
+                        </div><!-- End .col-lg-6 -->
 
                     </div><!-- End .container-fluid -->
 
-                    <div class="row-fluid">
+                    <div class="row">
 
-                        <div class="span6">
+                        <div class="col-lg-6">
                             <div class="page-header">
                                 <h4>Combined table</h4>
                             </div>
@@ -230,22 +230,19 @@
                                 </tbody>
                             </table>
 
-                        </div><!-- End .span6 -->
+                        </div><!-- End .col-lg-6 -->
 
-                        <div class="span6">
-                            
-                            <div class="box">
-
-                                <div class="title">
-
+                        <div class="col-lg-6">                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
                                     <h4>
                                         <span class="icon16 icomoon-icon-equalizer-2"></span>
                                         <span>With action buttons</span>
                                     </h4>
-                                    <a href="#" class="minimize">Minimize</a>
+                                    <a href="#" class="minimize" style="display: none;">Minimize</a>
                                 </div>
-                                <div class="content noPad">
-                                    <table class="responsive table table-bordered">
+                                <div class="panel-body noPad">
+                                    <div class="responsive" style="overflow: hidden; outline: none;" tabindex="5005"><table class="table table-bordered">
                                         <thead>
                                           <tr>
                                             <th>#</th>
@@ -263,8 +260,8 @@
                                             <td>@mdo</td>
                                             <td>
                                                 <div class="controls center">
-                                                    <a href="#" title="Edit task" class="tip"><span class="icon12 icomoon-icon-pencil"></span></a>
-                                                    <a href="#" title="Remove task" class="tip"><span class="icon12 icomoon-icon-remove"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Edit task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-pencil"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Remove task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-remove"></span></a>
                                                 </div>
                                             </td>
                                           </tr>
@@ -275,8 +272,8 @@
                                             <td>@fat</td>
                                             <td>
                                                 <div class="controls center">
-                                                    <a href="#" title="Edit task" class="tip"><span class="icon12 icomoon-icon-pencil"></span></a>
-                                                    <a href="#" title="Remove task" class="tip"><span class="icon12 icomoon-icon-remove"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Edit task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-pencil"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Remove task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-remove"></span></a>
                                                 </div>
                                             </td>
                                           </tr>
@@ -287,33 +284,30 @@
                                             <td>@twitter</td>
                                             <td>
                                                 <div class="controls center">
-                                                    <a href="#" title="Edit task" class="tip"><span class="icon12 icomoon-icon-pencil"></span></a>
-                                                    <a href="#" title="Remove task" class="tip"><span class="icon12 icomoon-icon-remove"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Edit task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-pencil"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Remove task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-remove"></span></a>
                                                 </div>
                                             </td>
                                           </tr>
                                         </tbody>
-                                    </table>
+                                    </table></div>
                                 </div>
 
-                            </div><!-- End .box -->
+                            </div><!-- End .panel -->
 
-                        </div><!-- End .span6 -->
+                        </div>
 
-                    </div><!-- End .row-fluid -->
+                    </div><!-- End .row -->
 
-                    <div class="row-fluid">
+                    <div class="row">
 
-                        <div class="span6">
-                            
-                            <div class="box">
-
-                                <div class="title">
-
+                        <div class="col-lg-6">                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
                                     <h4>
                                         <span class="icon16 icomoon-icon-equalizer-2"></span>
                                         <span>With checkboxes and controls</span>
-                                        <form class="box-form right" action="">
+                                        <form class="panel-form right" action="">
                                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                                 <span class="icon16 icomoon-icon-cog-2"></span>
                                                 <span class="caret"></span>
@@ -325,17 +319,17 @@
                                         </form>
                                        
                                     </h4>
-                                    <a href="#" class="minimize">Minimize</a>
+                                    <a href="#" class="minimize" style="display: none;">Minimize</a>
                                 </div>
-                                <div class="content noPad">
-                                    <table class="responsive table table-bordered" id="checkAll">
+                                <div class="panel-body noPad">
+                                    <div class="responsive" style="overflow: hidden; outline: none;" tabindex="5006"><table class="table table-bordered" id="checkAll">
                                         <thead>
                                           <tr>
                                             <th>#</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Username</th>
-                                             <th id="masterCh" class="ch"><input type="checkbox" name="checkbox" value="all" class="styled" /></th>
+                                             <th id="masterCh" class="ch"><div class="checker"><span><input type="checkbox" name="checkbox" value="all" class="styled"></span></div></th>
                                             <th>Actions</th>
                                           </tr>
                                         </thead>
@@ -345,11 +339,11 @@
                                             <td>Mark</td>
                                             <td>Otto</td>
                                             <td>@mdo</td>
-                                            <td class="chChildren"><input type="checkbox" name="checkbox" value="1" class="styled" /></td>
+                                            <td class="chChildren"><div class="checker"><span><input type="checkbox" name="checkbox" value="1" class="styled"></span></div></td>
                                             <td>
                                                 <div class="controls center">
-                                                    <a href="#" title="Edit task" class="tip"><span class="icon12 icomoon-icon-pencil"></span></a>
-                                                    <a href="#" title="Remove task" class="tip"><span class="icon12 icomoon-icon-remove"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Edit task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-pencil"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Remove task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-remove"></span></a>
                                                 </div>
                                             </td>
                                           </tr>
@@ -358,11 +352,11 @@
                                             <td>Jacob</td>
                                             <td>Thornton</td>
                                             <td>@fat</td>
-                                             <td class="chChildren"><input type="checkbox" name="checkbox" value="2" class="styled" /></td>
+                                             <td class="chChildren"><div class="checker"><span><input type="checkbox" name="checkbox" value="2" class="styled"></span></div></td>
                                             <td>
                                                 <div class="controls center">
-                                                    <a href="#" title="Edit task" class="tip"><span class="icon12 icomoon-icon-pencil"></span></a>
-                                                    <a href="#" title="Remove task" class="tip"><span class="icon12 icomoon-icon-remove"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Edit task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-pencil"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Remove task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-remove"></span></a>
                                                 </div>
                                             </td>
                                           </tr>
@@ -371,23 +365,23 @@
                                             <td>Larry</td>
                                             <td>the Bird</td>
                                             <td>@twitter</td>
-                                            <td class="chChildren"><input type="checkbox" name="checkbox" value="3" class="styled" /></td>
+                                            <td class="chChildren"><div class="checker"><span><input type="checkbox" name="checkbox" value="3" class="styled"></span></div></td>
                                             <td>
                                                 <div class="controls center">
-                                                    <a href="#" title="Edit task" class="tip"><span class="icon12 icomoon-icon-pencil"></span></a>
-                                                    <a href="#" title="Remove task" class="tip"><span class="icon12 icomoon-icon-remove"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Edit task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-pencil"></span></a>
+                                                    <a href="#" class="tip" oldtitle="Remove task" title="" data-hasqtip="true"><span class="icon12 icomoon-icon-remove"></span></a>
                                                 </div>
                                             </td>
                                           </tr>
                                         </tbody>
-                                    </table>
+                                    </table></div>
                                 </div>
 
-                            </div><!-- End .box -->
+                            </div><!-- End .panel -->
 
-                        </div><!-- End .span6 -->
+                        </div>
 
-                        <div class="span6">
+                        <div class="col-lg-6">
 
                             <div class="box">
 
@@ -434,9 +428,9 @@
 
                             </div><!-- End .box -->
 
-                        </div><!-- End .span6 -->
+                        </div><!-- End .col-lg-6 -->
 
-                    </div><!-- End .row-fluid -->
+                    </div><!-- End .row -->
                
                 <!-- Page end here -->
                     

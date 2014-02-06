@@ -18,6 +18,8 @@
     <script type="text/javascript" src="<?=asset_url('plugins/charts/knob/jquery.knob.js');?>"></script><!-- Circular sliders and stats -->
 
     <!-- Misc plugins -->
+    <script type="text/javascript" src="<?=asset_url('plugins/misc/nicescroll/jquery.nicescroll.min.js');?>"></script>
+
     <script type="text/javascript" src="<?=asset_url('plugins/misc/fullcalendar/fullcalendar.min.js');?>"></script><!-- Calendar plugin -->
     <script type="text/javascript" src="<?=asset_url('plugins/misc/qtip/jquery.qtip.min.js');?>"></script><!-- Custom tooltip plugin -->
     <script type="text/javascript" src="<?=asset_url('plugins/misc/totop/jquery.ui.totop.min.js');?>"></script> <!-- Back to top plugin -->
@@ -30,10 +32,14 @@
     <!-- Form plugins -->
     <script type="text/javascript" src="<?=asset_url('plugins/forms/uniform/jquery.uniform.min.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('plugins/forms/validate/jquery.validate.min.js');?>"></script>
-    
+     <!-- Table plugins -->
+    <script type="text/javascript" src="<?=asset_url('plugins/tables/responsive-tables/responsive-tables.js');?>"></script><!-- Make tables responsive -->
+
     <!-- Init plugins -->
     <script type="text/javascript" src="<?=asset_url('js/main.js');?>"></script><!-- Core js functions -->
     <script type="text/javascript" src="<?=asset_url('js/dashboard.js');?>"></script><!-- Init plugins only for page -->
+    <script type="text/javascript" src="<?=asset_url('js/tables.js');?>">
+    
 
 
 </html>
