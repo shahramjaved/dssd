@@ -518,6 +518,8 @@ Clonify.SCC = {
         
         new FlexibleNav( new FlexibleNavMaker('.window0-minimap-index').make().prependTo('#code_map1') );        
       }else{
+        $("#code_window1").removeClass('col-lg-11');
+        $("#code_window1").addClass('col-lg-5');
         $(".code-window2").show();
         $("#code_window2").html(r);
         window.location.hash='window1-96';        
