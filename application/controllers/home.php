@@ -24,6 +24,7 @@ class Home extends CI_Controller {
     $viewData = array();
     $scc_id = $this->input->post('scc_id');
     $clone_list_id = $this->input->post('clone_list_id');
+    // var_dump($clone_list_id);
     
     $userId = 15;
     $loadId = 1;
@@ -58,11 +59,61 @@ class Home extends CI_Controller {
     
     $obj->HighlightLines($lines);
     $obj->AddMiniMapLink($miniMapLinks);
-    $obj->SetId('window' . $clone_list_id);    
+    $obj->SetId("window".$clone_list_id);    
     echo $obj->getFormattedCode();
   }
   
   public function SingleCloneClass(){
+    $viewData = array();
+        
+    $viewData['scc_data'] = array(
+                      array(
+                        'no' => 0,
+                        'scc_id' => 0,  
+                        'length' => 38,
+                        'total_clones' => 2,  
+                      ),
+                      array(
+                        'no' => 1,
+                        'scc_id' => 1,  
+                        'length' => 147,
+                        'total_clones' => 2,  
+                      ),
+                    );
+    
+    $viewData['scc_clone_list_data'] = array(
+            0 => array( 
+                        array(
+                          'clone_list_id' => 0,
+                          'no' => 0,
+                          'gid' => 0,
+                          'did' => 0,
+                          'fid' => 4,
+                          'start_line' => 56,
+                          'end_line' => 68,
+                          'file_name' => 'File1.php',
+                        ),
+                        array(
+                          'clone_list_id' => 1,
+                          'no' => 1,
+                          'gid' => 0,
+                          'did' => 0,
+                          'fid' => 4,
+                          'start_line' => 96,
+                          'end_line' => 108,
+                          'file_name' => 'File1.php',
+                        ),
+                    )        
+       );
+    
+    
+    
+    
+    $this->load->view('partials/main_header');
+    $this->load->view('clone_table/scc.php', $viewData);
+    $this->load->view('partials/main_footer');
+  }
+  public function SingleCloneClass2(){
     $viewData = array();
         
     $viewData['scc_data'] = array(
@@ -131,7 +182,7 @@ class Home extends CI_Controller {
     
     
     $this->load->view('partials/main_header');
-    $this->load->view('clone_table/scc.php', $viewData);
+    $this->load->view('clone_table/scc2.php', $viewData);
     $this->load->view('partials/main_footer');
   }
 }

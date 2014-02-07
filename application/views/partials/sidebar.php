@@ -1,8 +1,4 @@
-<?php
-  $parent = isset($parent) ? $parent : '';
-  $child = isset($child) ? $child : '';
-?>
-
+ <!--Responsive navigation button-->  
         <div class="resBtn">
             <a href="#"><span class="icon16 minia-icon-list-3"></span></a>
         </div>
@@ -24,52 +20,22 @@
 
         <div class="mainnav">
             <ul>
-                <li id="cds"><a href="#">
-                    <span class="marginL10"></span>
-                    Clone Detection Settings
-                  </a></li>
-                <li id="ctv">
-                    <a href="#">
-                      <span class="marginL10"></span>
-                      Clone Table View
-                    </a>
+                <li>
+                    <a href="#"><span class="icon16 fa fa-desktop"></span>Clone Class View</a>
                     <ul class="sub">
-                        <li id="ctv_scc">
+                        <li>
                             <a href="<?php echo site_url('home/SingleCloneClass');?>">
-                              <span class="marginL20"></span> 
-                              Single Clone Class 
+                                <span class="icon16 fa fa-caret-right"></span>Single View 1 
                             </a>
-                        </li>                        
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('home/SingleCloneClass2');?>">
+                                <span class="icon16 fa fa fa-caret-right"></span>Single View 2
+                            </a>
+                        </li>
                     </ul>
-                </li>
-                <li id="cgs">
-                  <a href="#">
-                    <span class="marginL10"></span>
-                    Clone Graph View
-                  </a>
-                </li>
-                <li id="msv">
-                  <a href="#">
-                    <span class="marginL10"></span>
-                    Multi System View
-                  </a>
-                </li>
-                
+                </li>                                                
             </ul>
         </div>
-    </div>
-</div>
-<script>
-  $(document).ready(function(){
-    <?php if ($parent){?>
-     // if ($("#<?php echo $parent?> ul").length > 0){
-        //$("#<?php echo $parent?> ul").addClass("expand show");
-      //}
-    <?php }?>
-    <?php if ($child){?>
-      //if ($("#<?php echo $parent."_" . $child;?>").length > 0){
-        //$("#<?php echo $parent."_" . $child;?>").addClass("current");
-      //}
-    <?php }?>
-  });
-</script>        
+    </div><!-- End sidenav --> 
+</div><!-- End #sidebar -->      

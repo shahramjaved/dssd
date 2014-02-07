@@ -3689,7 +3689,7 @@ body.rtl .support-section .sendMsg {margin-right: 0;}
 }
 
 .code-window{
-  height: 200px;
+  height: 600px;
   overflow-y: scroll;
 }
 
@@ -3765,7 +3765,7 @@ body.rtl .support-section .sendMsg {margin-right: 0;}
 
 
 nav.flexible-nav {   
-    height: 200px;    
+    height: 100%;    
     float: right;
     border-left: 4px dashed rgba(150, 150, 150, 0.2);
     background: white;

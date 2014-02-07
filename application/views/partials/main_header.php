@@ -25,7 +25,9 @@
     <link href="<?=asset_url('plugins/misc/pnotify/jquery.pnotify.default.css')?>" type="text/css" rel="stylesheet" />
     <link href="<?=asset_url('plugins/tables/dataTables/jquery.dataTables.css')?>" rel="stylesheet" type="text/css"/>
     <link href="<?=asset_url('plugins/tables/dataTables/TableTools.css')?>" rel="stylesheet" type="text/css"/>    
-    <link href="<?=asset_url('plugins/tables/responsive-tables/responsive-tables.css')?>" rel="stylesheet" type="text/css"/>    
+    <link href="<?=asset_url('plugins/tables/responsive-tables/responsive-tables.css')?>" rel="stylesheet" type="text/css"/>  
+    <link href="<?=asset_url('plugins/misc/qtip/jquery.qtip.css')?>" rel="stylesheet" type="text/css"/>  
+
 
     <!-- Main stylesheets -->
     <link href="<?=asset_url('css/main.css')?>" rel="stylesheet" type="text/css" /> 

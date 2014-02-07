@@ -1,14 +1,24 @@
 <div id="wrapper">
   
 <?php 
-  $parent = 'ctv';
-  $child = 'scc';
   include VIEW_PARTIAL_FOLDER_PATH . '/sidebar.php'; 
 ?>
     <div id="content" class="clearfix">
       <div class="contentwrapper">
         <div class="heading">
-          <h3>Single Clone Class</h3>                    
+          <h3>Single Clone Class</h3> 
+          <ul class="breadcrumb">
+                <li>You are here:</li>
+                <li>
+                    <a href="<?php echo base_url();?>" class="tip" title="back to dashboard">
+                        <span class="icon16 fa fa-desktop"></span>
+                    </a> 
+                    <span class="divider">
+                        <span class="icon16 fa fa-caret-right"></span>
+                    </span>
+                </li>
+                <li class="active">Single Clone Class</li>
+            </ul>                   
         </div>
         
         <div class="row code-window-containter">          
