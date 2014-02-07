@@ -126,7 +126,7 @@
                             <?php echo $data['length'];?>
                             <?php if($data['length']=="147"){ ?>
                              <div class="progress progress-mini left tip" title="100%" style="width:100%;" >
-                              <div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+                              <div class="progress-bar progress-bar-danger" style="width: 95%;"></div>
                              </div>
                             <?php } ?>
                             <?php if($data['length']=="38"){ ?>
