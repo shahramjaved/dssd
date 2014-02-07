@@ -498,7 +498,7 @@ Clonify.SCC = {
   },
   
   viewCodeData: function(_scc_id, _clone_list_id){
-    var _url = base_url + "/home/loadCode";
+    var _url = base_url + "home/loadCode";
     var _params = {
       scc_id : _scc_id,
       clone_list_id : _clone_list_id

@@ -117,14 +117,30 @@
                       <tbody>
                         <?php foreach($scc_data as $data){?>
                         <tr>
-                          <td><?php echo $data['no'];?></td>
+                          <td><?php echo $data['no'];?>
+
+
+                          </td>
                           <td><?php echo $data['scc_id'];?></td>                          
-                          <td><?php echo $data['length'];?></td>
+                          <td>
+                            <?php echo $data['length'];?>
+                            <?php if($data['length']=="147"){ ?>
+                             <div class="progress progress-mini left tip" title="100%" style="width:100%;" >
+                              <div class="progress-bar progress-bar-success" style="width: 100%;"></div>
+                             </div>
+                            <?php } ?>
+                            <?php if($data['length']=="38"){ ?>
+                             <div class="progress progress-mini left tip" title="20%" style="width:100%;" >
+                              <div class="progress-bar progress-bar-danger" style="width: 20%;"></div>
+                             </div>
+                            <?php } ?>
+                          </td>
                           <td><?php echo $data['total_clones'];?></td>
                           <td>
                             <a href="javascript:void(0)" onclick="Clonify.SCC.viewCloneInstance('<?php echo $data['scc_id'];?>')">
                               View Clone Instance List
                             </a>
+
                           </td>
                         </tr>
                         <?php }?>                        
