@@ -24,11 +24,9 @@
 
                     <div class="col-lg-1" id="code_map1">
                     </div>
-                  </div>
-                  <div class="clearfix"></div>
-                  <br/>
+                  </div>                  
                   <div class="code-window2">
-                    <div class="col-lg-11 padding15 code-window" id="code_window2">
+                    <div class="col-lg-5 padding15 code-window" id="code_window2">
 
                     </div>
                     <div class="col-lg-1" id="code_map2">
