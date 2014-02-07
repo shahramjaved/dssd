@@ -145,7 +145,7 @@
                           </td>
                           <td><?php echo $data['total_clones'];?></td>
                           <td>
-                            <a href="javascript:void(0)" onclick="Clonify.SCC.viewCloneInstance('<?php echo $data['scc_id'];?>')">
+                            <a href="javascript:void(0)"  onclick="Clonify.SCC.viewCloneInstance('<?php echo $data['scc_id'];?>')">
                               View Clone Instance List
                             </a>
 
