@@ -1,3 +1,16 @@
+<style type="text/css">
+.panel .dataTables_length {
+  margin-top: 8px;
+}
+div.selector {
+
+width: 50% !important;
+
+}
+.list_view{
+  cursor: pointer;
+}
+</style>
 <div id="wrapper">
   
 <?php 
@@ -22,51 +35,51 @@
         </div>
         
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
               <div class="panel panel-default gradient">
                 <div class="panel-heading min">
                  <h4><span> <i class="fa fa-list-alt fa-2"></i> SCC List</span></h4>
                  <a href="#"  id="pannel1" class="minimize" style="display: inline;">Minimize</a>
                 </div>
                 <div class="panel-body noPad clearfix">
-                  <table cellpadding="0" cellspacing="0" border="0" class="responsive dynamicTable display table table-bordered" width="100%">
+                   <br clear="all">
+                <div class="myrange" style="width:210px;  margin-top:10px; margin:0 auto;">
+                          <div id="slider-range" class="slider"></div>
+                          <input type="text" id="amount1" style="border:0; color:#ED7A53; font-weight:bold; box-shadow:none;" />
+                </div>
+                
+                  <table cellpadding="0" cellspacing="0" border="0" class="responsive dynamicTable1 display table table-bordered" width="100%">
                     <thead>
                       <tr>
                         <th>No</th>
                         <th>SCC ID</th>
                         <th>Length</th>                        
                         <th>No. Clones</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                       <tbody>
                         <?php foreach($scc_data as $data){?>
-                        <tr>
+                        <tr class="list_view" data-sccid="<?php echo $data['scc_id'];?>">
                           <td><?php echo $data['no'];?>
 
 
                           </td>
                           <td><?php echo $data['scc_id'];?></td>                          
-                          <td>
-                            <?php echo $data['length'];?>
+                          <td data-length="<?php echo $data['length'];?>">
+                            <span><?php echo $data['length'];?></span>
                             <?php if($data['length']=="147"){ ?>
-                             <div class="progress progress-mini left tip" title="100%" style="width:100%;" >
+                             <div class="progress progress-mini left" title="100%" style="width:100%;" >
                               <div class="progress-bar progress-bar-danger" style="width: 95%;"></div>
                              </div>
                             <?php } ?>
                             <?php if($data['length']=="38"){ ?>
-                             <div class="progress progress-mini left tip" title="20%" style="width:100%;" >
+                             <div class="progress progress-mini left" title="20%" style="width:100%;" >
                               <div class="progress-bar progress-bar-danger" style="width: 20%;"></div>
                              </div>
                             <?php } ?>
                           </td>
                           <td><?php echo $data['total_clones'];?></td>
-                          <td>
-                            <a href="#" class="list_view" data-sccid="<?php echo $data['scc_id'];?>">
-                             <i class="fa fa-eye fa-3 tip" title="View List"></i>
-                            </a>
-
-                          </td>
+                          
                         </tr>
                         <?php }?>                        
                       </tbody>
@@ -76,7 +89,6 @@
                           <th>SCC ID</th>
                           <th>Length</th>                          
                           <th>No. Clones</th>
-                          <th>Action</th>
                         </tr>
                       </tfoot>
                   </table>
@@ -197,13 +209,13 @@ $(document).ready(function(){
     $(".list_view").on("click",function(){
             Clonify.SCC.viewCloneInstance($(this).data("sccid"));
             event.preventDefault();
-            magic("pannel1");
+            // magic("pannel1");
         return false;
     });
      $(".code_view").on("click",function(){
             Clonify.SCC.viewCodeData($(this).data("sccid"),$(this).data("clid"));
             event.preventDefault();
-            magic("pannel2");
+            // magic("pannel2");
         return false;
     });
     
