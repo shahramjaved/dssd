@@ -34,10 +34,12 @@ class SyntaxHighlighter{
     $this->geshi->highlight_lines_extra($lines);
   }
   
-  public function AddMiniMapLink($lineNums){
-    $this->geshi->set_start_highlight_extra_lines($lineNums);
-  }
-  
+  /*
+   * $data would be array with Index as Line Number from where Highlighted block Start and Value would be Lable of Minimap
+   */
+  public function AddMiniMapLinkLabel($data){
+    $this->geshi->set_minimap_link_lable($data);
+  }  
   
   public function setToolTip($text){        
     

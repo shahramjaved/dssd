@@ -30,26 +30,31 @@ class Home extends CI_Controller {
     $loadId = 1;
     $lines = array();
     $miniMapLinks = array();
+    $miniMapLinkLable = array();
     if ($clone_list_id == 0){
       $fileName = 'Cocos2dxBitmap.java';
       for($i=56; $i<=68;$i++){
         $lines[] = $i;
       }
       $miniMapLinks[] = 56;
+      $miniMapLinkLable[56] = array('text' => 'Clone 1', 'rows' => 12);
       for($i=156; $i<=168;$i++){
         $lines[] = $i;
       }
       $miniMapLinks[] = 156;
+      $miniMapLinkLable[156] = array('text' => 'Clone 2', 'rows' => 12);
     }else{
       $fileName = 'Cocos2dxGLSurfaceView.java';      
       for($i=96; $i<=108;$i++){
         $lines[] = $i;
       }
       $miniMapLinks[] = 96;
+      $miniMapLinkLable[96] = array('text' => 'Clone 1', 'rows' => 12);
       for($i=196; $i<=208;$i++){
         $lines[] = $i;
       }
       $miniMapLinks[] = 196;
+      $miniMapLinkLable[196] = array('text' => 'Clone 2', 'rows' => 12);
     }
     
     $filePath = UPLOADED_FILES_FOLDER . $userId . "/" . $loadId . "/" . $fileName;    
@@ -57,8 +62,8 @@ class Home extends CI_Controller {
     $obj->EnableLineNumbers();
     
     
-    $obj->HighlightLines($lines);
-    $obj->AddMiniMapLink($miniMapLinks);
+    $obj->HighlightLines($lines);    
+    $obj->AddMiniMapLinkLabel($miniMapLinkLable);    
     $obj->SetId("window".$clone_list_id);    
     echo $obj->getFormattedCode();
   }

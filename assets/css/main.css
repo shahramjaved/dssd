@@ -3764,10 +3764,7 @@ body.rtl .support-section .sendMsg {margin-right: 0;}
 }
 
 
-nav.flexible-nav {   
-    height: 100%;    
-    float: right;
-    border-left: 4px dashed rgba(150, 150, 150, 0.2);
+nav.flexible-nav {    
     background: white;
     z-index: 9999;
 }
@@ -3806,8 +3803,7 @@ nav.flexible-nav ul li a {
 
 nav.flexible-nav ul li a:hover {
     z-index: 11111;
-    opacity: 1;
-    padding-right: 12px;
+    opacity: 1;    
 }
 
 nav.flexible-nav ul li a.current {
