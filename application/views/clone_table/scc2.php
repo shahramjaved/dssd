@@ -155,15 +155,14 @@
                     <div class="col-md-11 padding15 code-window" id="code_window1">                    
                     </div>
 
-                    <div class="col-md-1" style="width:45px;" id="code_map1">
+                    <div class="col-md-1" id="code_map1">
                     </div>
                   </div>                  
                   <div class="code-window2">
                     <div class="col-md-5 padding15 code-window" id="code_window2">
 
                     </div>
-                    <div class="col-md-1" style="width:45px;" id="code_map2">
-
+                    <div class="col-md-1" id="code_map2">
                     </div>
                   </div>
                 </div>

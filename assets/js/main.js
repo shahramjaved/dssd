@@ -513,10 +513,10 @@ Clonify.SCC = {
         
         var selector1 = '#window0-56, #window0-58, #window0-60, #window0-62, #window0-64, #window0-66, #window0-68';
         $(selector1).poshytip({
-          content: 'THIS IS TEST TOOLTIP FOR WINDOW 1'
+          content: 'File1.java <br/>THIS IS TEST TOOLTIP FOR WINDOW 1'
         });
         
-        new FlexibleNav( new FlexibleNavMaker('.window0-minimap-index').make().prependTo('#code_map1') );        
+        new FlexibleNav('#code_window1', new FlexibleNavMaker('.window0-minimap-index').make().prependTo('#code_map1') );        
       }else{
         $("#code_window1").removeClass('col-md-11');
         $("#code_window1").addClass('col-md-5');
@@ -525,10 +525,10 @@ Clonify.SCC = {
         window.location.hash='window1-96';        
         var selector2 = '#window1-96, #window1-98, #window1-100, #window1-102, #window1-104, #window1-106, #window1-108';
         $(selector2).poshytip({
-          content: 'THIS IS TEST TOOLTIP FOR WINDOW 2'
+          content: 'File2.java <br/> <br/>THIS IS TEST TOOLTIP FOR WINDOW 2'
         });
         
-        new FlexibleNav( new FlexibleNavMaker('.window1-minimap-index').make().prependTo('#code_map2') );
+        new FlexibleNav('#code_window2', new FlexibleNavMaker('.window1-minimap-index').make().prependTo('#code_map2') );
 
       }      
     });

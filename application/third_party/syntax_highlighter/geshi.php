@@ -421,6 +421,8 @@ class GeSHi {
      * @var array
      */
     var $start_highlight_extra_lines = array();
+    
+    var $mini_map_text = array();
 
     /**
      * Styles of lines that should be highlighted extra
@@ -1851,19 +1853,9 @@ class GeSHi {
             }
         }
     }
-
-    /**
-     * Sets the style for extra-highlighted lines
-     *
-     * @param string The style for extra-highlighted lines
-     * @since 1.0.2
-     */
-    function set_highlight_lines_extra_style($styles) {
-        $this->highlight_extra_lines_style = $styles;
-    }
     
-    function set_start_highlight_extra_lines($start) {
-        $this->start_highlight_extra_lines = $start;
+    function set_minimap_link_lable($data) {
+        $this->mini_map_text = $data;
     }
 
     /**
@@ -3958,12 +3950,16 @@ class GeSHi {
                     } else {
                         array_push($attrs['style'], $this->get_line_style($i));
                     }                    
-                }
+                }                
                 
-                if (in_array($i, $this->start_highlight_extra_lines)){
+                if (isset($this->mini_map_text[$i])){
                   $attrs['class'][] = "$this->overall_id-minimap-index";
-                }
-                // Add in the line surrounded by appropriate list HTML
+                  $attrs['data-navtext'][] = $this->mini_map_text[$i]['text'];
+                  $attrs['data-navtext-rows'][] = $this->mini_map_text[$i]['rows'];
+                  $attrs['line_number'][] = $i;
+                }                
+                 
+               // Add in the line surrounded by appropriate list HTML
                 $attr_string = '';
                 foreach ($attrs as $key => $attr) {
                     $attr_string .= ' ' . $key . '="' . implode(' ', $attr) . '"';
