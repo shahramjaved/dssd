@@ -46,8 +46,8 @@ class SyntaxHighlighter{
   }
   
   public function SetId($id){
-    $this->geshi->enable_ids(true);
-    $this->geshi->set_overall_id($id);
+    $this->geshi->enable_ids(true, $id);
+//    $this->geshi->set_overall_id($id);
   }
   
   public function EnableLineNumbers(){    

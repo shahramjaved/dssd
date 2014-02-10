@@ -1812,6 +1812,9 @@ class GeSHi {
      * @param boolean If true, IDs will be added to each line.
      * @since 1.0.2
      */
+    
+    //Added additional parameter to add the unique constant file number for later uses. This cannot be used
+    // with overall id set as parent id for the code
     function enable_ids($flag = true, $format = "file_1") {
         $this->add_ids = ($flag) ? true : false;
         $this->id_format = $format;
