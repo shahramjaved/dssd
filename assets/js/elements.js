@@ -101,7 +101,7 @@ $(document).ready(function() {
 	});
 
 	//animated progress bar
-	$('#progress1').anim_progressbar();
+	// $('#progress1').anim_progressbar();
 
 	// from second #5 till 15
     var iNow = new Date().setTime(new Date().getTime() + 5 * 1000); // now plus 5 secs

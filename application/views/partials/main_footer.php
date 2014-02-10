@@ -2,13 +2,17 @@
    
      <!-- plugins -->
     <script type="text/javascript" src="<?=asset_url('plugins/charts/sparkline/jquery.sparkline.min.js');?>"></script>
-    <script type="text/javascript" src="<?=asset_url('plugins/forms/uniform/jquery.uniform.min.js');?>"></script>      
+    <script type="text/javascript" src="<?=asset_url('plugins/forms/uniform/jquery.uniform.min.js');?>"></script>
+    <script type="text/javascript" src="<?=asset_url('plugins/forms/validate/jquery.validate.min.js');?>"></script>      
     
     <script type="text/javascript" src="<?=asset_url('plugins/tables/dataTables/jquery.dataTables.min.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('plugins/tables/dataTables/jquery.dataTables.columnFilter.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('plugins/tables/dataTables/TableTools.min.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('plugins/tables/dataTables/ZeroClipboard.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('plugins/tables/responsive-tables/responsive-tables.js');?>"></script>
+    <script type="text/javascript" src="<?=asset_url('plugins/charts/knob/jquery.knob.js');?>"></script>
+    <script type="text/javascript" src="<?=asset_url('plugins/misc/animated-progress-bar/jquery.progressbar.js');?>"></script>
+
     
     <script type="text/javascript" src="<?=asset_url('plugins/misc/nicescroll/jquery.nicescroll.min.js');?>"></script>
     <script type="text/javascript" src="<?=asset_url('plugins/misc/qtip/jquery.qtip.min.js');?>"></script>    
