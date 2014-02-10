@@ -511,9 +511,18 @@ Clonify.SCC = {
         $("#code_window1").html(r);
         window.location.hash='window0-56';
         
-        var selector1 = '#window0-56, #window0-58, #window0-60, #window0-62, #window0-64, #window0-66, #window0-68';
+        var selector1 = '#geshi-window0-56, #geshi-window0-58, #geshi-window0-60, #geshi-window0-62, #geshi-window0-64, #geshi-window0-66, #geshi-window0-68';
         $(selector1).poshytip({
           content: 'File1.java <br/>THIS IS TEST TOOLTIP FOR WINDOW 1'
+        });
+        
+        $(selector1).each(function(){
+            var str = $(this).find('div').html();
+            str = str.replace("canvas","<span style='color: red !important'>canvas</span>");
+            str = str.replace("alignment","<span style='color: red !important'>alignment</span>");
+            str = str.replace("case","<span style='color: red !important'>case</span>");
+            str = str.replace("switch","<span style='color: red !important'>switch</span>");
+            $(this).find('div').html(str);
         });
         
         new FlexibleNav('#code_window1', new FlexibleNavMaker('.window0-minimap-index').make().prependTo('#code_map1') );        
@@ -523,10 +532,20 @@ Clonify.SCC = {
         $(".code-window2").show();
         $("#code_window2").html(r);
         window.location.hash='window1-96';        
-        var selector2 = '#window1-96, #window1-98, #window1-100, #window1-102, #window1-104, #window1-106, #window1-108';
+        var selector2 = '#geshi-window1-96, #geshi-window1-98, #geshi-window1-100, #geshi-window1-102, #geshi-window1-104, #geshi-window1-106, #geshi-window1-108';
         $(selector2).poshytip({
           content: 'File2.java <br/> <br/>THIS IS TEST TOOLTIP FOR WINDOW 2'
         });
+        $(selector2).each(function(){
+            var str = $(this).find('div').html();
+            str = str.replace("static","<span style='color: red !important'>static</span>");
+            str = str.replace("private","<span style='color: red !important'>private</span>");
+            str = str.replace("case","<span style='color: red !important'>case</span>");
+            str = str.replace("final","<span style='color: red !important'>final</span>");
+            str = str.replace("Cocos2dxGLSurfaceView ","<span style='color: red !important'>Cocos2dxGLSurfaceView </span>");
+            $(this).find('div').html(str);
+        });
+        
         
         new FlexibleNav('#code_window2', new FlexibleNavMaker('.window1-minimap-index').make().prependTo('#code_map2') );
 
