@@ -508,6 +508,7 @@ Clonify.SCC = {
       $(".code-window-containter").show();
       if ($("#code_window1").html() == ""){
         $(".code-window1").show();
+        $("#file1").html("SCC ID : "+_scc_id+' Instance Id : '+_clone_list_id);
         $("#code_window1").html(r);
         window.location.hash='geshi-window0-56';
         
@@ -530,6 +531,7 @@ Clonify.SCC = {
         $("#code_window1").removeClass('col-md-11');
         $("#code_window1").addClass('col-md-5');
         $(".code-window2").show();
+        $("#file2").html("SCC ID : "+_scc_id+' Instance Id : '+_clone_list_id);
         $("#code_window2").html(r);
         window.location.hash='geshi-window1-96';        
         var selector2 = '#geshi-window1-96, #geshi-window1-98, #geshi-window1-100, #geshi-window1-102, #geshi-window1-104, #geshi-window1-106, #geshi-window1-108';
