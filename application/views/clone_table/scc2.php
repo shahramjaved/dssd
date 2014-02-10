@@ -10,6 +10,9 @@ width: 50% !important;
 .list_view{
   cursor: pointer;
 }
+.code_view{
+  cursor: pointer;
+}
 </style>
 <div id="wrapper">
   
@@ -117,12 +120,12 @@ width: 50% !important;
                         <th>Start Line</th>
                         <th>End Line</th>
                         <th>File Name</th>
-                        <th>Action</th>
+                        
                       </tr>
                     </thead>
                       <tbody>
                         <?php foreach($data as $d){?>
-                          <tr>
+                          <tr class="code_view" data-sccid= "<?php echo $scc_id;?>" data-clid= "<?php echo $d['clone_list_id'];?>">
                             <td><?php echo $d['no'];?></td>
                             <td><?php echo $d['gid'];?></td>
                             <td><?php echo $d['did'];?></td>
@@ -130,11 +133,7 @@ width: 50% !important;
                             <td><?php echo $d['start_line'];?></td>
                             <td><?php echo $d['end_line'];?></td>
                             <td><?php echo $d['file_name'];?></td>
-                            <td>
-                              <a href="#" class="code_view" data-sccid= "<?php echo $scc_id;?>" data-clid= "<?php echo $d['clone_list_id'];?>">
-                                <i class="fa fa-eye fa-3 tip" title="view code"></i>
-                              </a>
-                            </td>
+                            
                           </tr>
                         <?php }?>
                       </tbody>
@@ -147,7 +146,7 @@ width: 50% !important;
                           <th>Start Line</th>
                           <th>End Line</th>
                           <th>File Name</th>
-                          <th>Action</th>
+                          
                         </tr>
                       </tfoot>
                   </table>
